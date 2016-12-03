@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Avinash's Blog</title><link href="https://atamby1.github.io/" rel="alternate"></link><link href="https://atamby1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://atamby1.github.io/</id><updated>2016-12-03T14:45:00-05:00</updated><entry><title>Analyzing SAT Scores by State</title><link href="https://atamby1.github.io/analyzing-sat-scores-by-state.html" rel="alternate"></link><published>2016-12-03T14:45:00-05:00</published><updated>2016-12-03T14:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-12-03:analyzing-sat-scores-by-state.html</id><summary type="html">&lt;h4&gt;Preliminary Information&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Avinash's Blog</title><link href="https://atamby1.github.io/" rel="alternate"></link><link href="https://atamby1.github.io/feeds/projects.atom.xml" rel="self"></link><id>https://atamby1.github.io/</id><updated>2016-12-03T14:45:00-05:00</updated><entry><title>Analyzing SAT Scores by State</title><link href="https://atamby1.github.io/analyzing-sat-scores-by-state.html" rel="alternate"></link><published>2016-12-03T14:45:00-05:00</published><updated>2016-12-03T14:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-12-03:analyzing-sat-scores-by-state.html</id><summary type="html">&lt;h4&gt;Preliminary Information&lt;/h4&gt;
 &lt;p&gt;In this project, I take a look at SAT score averages of college-bound seniors and percentage of graduates taking SAT, by state or jurisdiction for the year 2000-2001. The data is taken from the &lt;a href="https://nces.ed.gov/programs/digest/d07/tables/dt07_137.asp"&gt;National Center for Education Statistics&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
@@ -576,90 +576,4 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;div class='tableauPlaceholder' id='viz1480790903597' style='position: relative'&gt;&lt;noscript&gt;&lt;a href='#'&gt;&lt;img alt='2001 SAT Average Verbal Score by State ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&amp;#47;1_rss.png' style='border: none' /&gt;&lt;/a&gt;&lt;/noscript&gt;&lt;object class='tableauViz'  style='display:none;'&gt;&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /&gt; &lt;param name='site_root' value='' /&gt;&lt;param name='name' value='2001SATAverageVerbalScorebyState&amp;#47;Sheet3' /&gt;&lt;param name='tabs' value='no' /&gt;&lt;param name='toolbar' value='yes' /&gt;&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&amp;#47;1.png' /&gt; &lt;param name='animate_transition' value='yes' /&gt;&lt;param name='display_static_image' value='yes' /&gt;&lt;param name='display_spinner' value='yes' /&gt;&lt;param name='display_overlay' value='yes' /&gt;&lt;param name='display_count' value='yes' /&gt;&lt;/object&gt;&lt;/div&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;            &lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;                    var divElement = document.getElementById(&amp;#39;viz1480790903597&amp;#39;);                    var vizElement = divElement.getElementsByTagName(&amp;#39;object&amp;#39;)[0];                    vizElement.style.width=&amp;#39;100%&amp;#39;;vizElement.style.height=(divElement.offsetWidth*0.75)+&amp;#39;px&amp;#39;;                    var scriptElement = document.createElement(&amp;#39;script&amp;#39;);                    scriptElement.src = &amp;#39;https://public.tableau.com/javascripts/api/viz_v1.js&amp;#39;;                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                &lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Projects"></category></entry><entry><title>Start Blogging with GitHub Pages and Pelican</title><link href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" rel="alternate"></link><published>2016-11-20T18:45:00-05:00</published><updated>2016-11-20T18:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-11-20:start-blogging-with-github-pages-and-pelican.html</id><summary type="html">&lt;p&gt;For those interested in starting a blog using Github Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.&lt;/p&gt;
-&lt;p&gt;But first, I want to go over why I wanted to start a blog, and why I decided to use GitHub Pages and Pelican.&lt;/p&gt;
-&lt;p&gt;At one of the first data science meetups I went to, the guest lecturer said something that kind of stuck with me: "The absolute worst way to learn something is to take a class on it. The absolute best way to learn something is to teach a class about it." Now, I don't know if I whole-heartedly agree that the worst way to learn something is to take a class on it, but I definitely do agree with the fact that the best way to learn something is to teach it. Being able to organize your thoughts and explain topics that may be relatively complex to someone who has never had any exposure to the topics before really helps drive down concepts that you may have thought you understood, but didn't truly understand.&lt;/p&gt;
-&lt;p&gt;So, I've decided to start this blog to try to organize my thoughts in a clear and comprehendible manner so that others and my future self can read through and learn something new or review things they already know, but hopefully get a stronger understanding of them.&lt;/p&gt;
-&lt;p&gt;Today, I'm going to write about how to start a blog. I decided to use Pelican as my static site generator because it's written in Python and this is meant to be a data science blog. I think it's really convenient to use Pelican because it supports the &lt;code&gt;Markdown&lt;/code&gt; format, so I can just write posts in Jupyter Notebook that includes code for projects that I decide to share and everything will automatically be formatted properly. It's also easy to generate the website using a simple CLI (command line interface) tool. Finally, a lot of people have already built really cool themes that you can use for your blog, or if you're really ambitious, you can build your own theme.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/stable/#"&gt;Click here&lt;/a&gt; to learn more about pelican and &lt;a href="http://www.pelicanthemes.com"&gt;here&lt;/a&gt; if you want to take a look at some of the public themes you can base your blog on.&lt;/p&gt;
-&lt;p&gt;Next, why use GitHub Pages? Well, using GitHub Pages is really a no-brainer if you're already using GitHub to share your projects and code. It's pretty much a free way to host your website and it's really easy to take projects you already have on GitHub and (using Pelican) turn it into a blog post.&lt;/p&gt;
-&lt;p&gt;Setting Pelican up with GitHub Pages is pretty straightforward, and once you're set up, posting new blog posts and sharing projects is a breeze. So, let's go over how to set up your blog.&lt;/p&gt;
-&lt;p&gt;Before you get started, you're going to need to download a few packages, so open up Terminal and type in the following commands:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican
-pip install markdown
-pip install ghp-import
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Next, you're going to want to head on over to your GitHub profile and create a new repository with the name 'USERNAME.github.io' where USERNAME is your own GitHub username.&lt;/p&gt;
-&lt;p&gt;Next, you'll want to clone this repository onto your computer. I decided to clone my repository into Home/Sites, but you can clone this repository wherever you want. I assume your root directory is your home folder, so simply typing &lt;code&gt;cd&lt;/code&gt; should get you into the home folder, then typing &lt;code&gt;cd Sites/&lt;/code&gt; should get you into the Sites folder&lt;/p&gt;
-&lt;p&gt;So, type the following commands in Terminal:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd
-cd Sites/
-git clone git@github.com:USERNAME/USERNAME.github.io.git MyBlog
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You can change &lt;code&gt;MyBlog&lt;/code&gt; into whatever you want the name of this folder to be.&lt;/p&gt;
-&lt;p&gt;Now that you've cloned your repository, you can cd into MyBlog and run pelican-quickstart to get started.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd MyBlog
-pelican-quickstart
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now, pelican-quickstart will ask you a series of questions to get your site up. Just hitting return without typing anything will assume you want the default setting. &lt;strong&gt;I want to highlight that you want your URL prefix to be https://USERNAME.github.io ! It should not start with just http://!&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; Where do you want to create your new web site? [.] 
-&amp;gt; What will be the title of this web site? YOUR TITLE
-&amp;gt; Who will be the author of this web site? YOUR NAME
-&amp;gt; What will be the default language of this web site? [en] 
-&amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) Y
-&amp;gt; What is your URL prefix? (see above example; no trailing slash) https://USERNAME.github.io
-&amp;gt; Do you want to enable article pagination? (Y/n) Y
-&amp;gt; How many articles per page do you want? [10] 
-&amp;gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y
-&amp;gt; Do you want an auto-reload &amp;amp; simpleHTTP script to assist with theme and site development? (Y/n) Y
-&amp;gt; Do you want to upload your website using FTP? (y/N) N
-&amp;gt; Do you want to upload your website using SSH? (y/N) N
-&amp;gt; Do you want to upload your website using Dropbox? (y/N) N
-&amp;gt; Do you want to upload your website using S3? (y/N) N
-&amp;gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N
-&amp;gt; Do you want to upload your website using GitHub Pages? (y/N) Y
-&amp;gt; Is this your personal page (username.github.io)? (y/N) Y
-Done. Your new project is available at /path/to/website
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now, you're ready to create your first sample blog post!&lt;/p&gt;
-&lt;p&gt;Just to test it out, I recommend you just make quick 'Hello World!' post just to make sure everything works properly. Then, you can delete it and make a real post once you have everything set up properly.&lt;/p&gt;
-&lt;p&gt;After pelican-quickstart finishes, you should have new folders and files your MyBlog folder. Go into the content folder and create a Markdown file by typing the following in Terminal:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd content
-touch first-post.md
-open first-post.md
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now, an empty file will pop in a text editor where you can write your blog post.&lt;/p&gt;
-&lt;p&gt;Just to make a very quick post, I suggest you type in the following in your first-post.md file:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;My&lt;/span&gt; &lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Post&lt;/span&gt;
-&lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2016&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;
-&lt;span class="n"&gt;Category&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Example&lt;/span&gt;
-
-&lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now you can go ahead and save that file and exit out of it. Next, in the Terminal type the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html
-make serve
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This will serve a local version of what your site will look like so that you can preview it before publishing it to the public. It will be visible at localhost:8000 by default. You can view your website here: http://localhost:8000/&lt;/p&gt;
-&lt;p&gt;If everything looks good on your website, go back to Terminal and press control + C (aka ^c) to stop the local server. Now you're ready to publish!&lt;/p&gt;
-&lt;p&gt;Type the following into Terminal:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make github
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now your website is public and you should be able to view by going to https://USERNAME.github.io !&lt;/p&gt;
-&lt;p&gt;At this point, I encourage you to look through different themes and personalize your blog a bit. Happy blogging!&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub Pages"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Projects"></category></entry></feed>

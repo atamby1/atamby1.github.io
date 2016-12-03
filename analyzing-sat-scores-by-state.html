@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Avinash's Blog - </title>
+    <meta name="description" content="" />
+    <meta name="Author" content="Ken M. Lai(networktsukkomime.me)" />
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://stepofweb.gweb.io/.templates/IsisOne/HTML/assets/plugins/lt-ie9/html5.js"></script>
+    <script type="text/javascript" src="http://stepofweb.gweb.io/.templates/IsisOne/HTML/assets/plugins/lt-ie9/respond.min.js"></script>
+    <script type="text/javascript" src="http://stepofweb.gweb.io/.templates/IsisOne/HTML/assets/plugins/lt-ie9/excanvas.compiled.js"></script>
+    <![endif]-->
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Dosis:300,400" rel="stylesheet" type="text/css" />
+
+
+    <!-- CORE CSS FRAMEWORK -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- CSS TEMPLATE -->
+    <link href="https://atamby1.github.io/theme/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="https://atamby1.github.io/theme/css/framework.css" rel="stylesheet" type="text/css" />
+    <link href="https://atamby1.github.io/theme/css/typography.css" rel="stylesheet" type="text/css" />
+    <link href="https://atamby1.github.io/theme/css/layout.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://atamby1.github.io/theme/css/blog.css" rel="stylesheet" type="text/css" />
+
+    <!-- ICONS -->
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+    <!-- Morenizr -->
+    <script type="text/javascript" src="https://atamby1.github.io/theme/js/modernizr.min.js"></script>
+
+    <!-- google authorship -->
+</head>
+<body>
+
+<!-- Main Nav -->
+<header id="header" style="margin-top:0">
+
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenu" class="fa fa-bars" type="button" data-toggle="collapse" data-target=".navbar-collapse"></button>
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand scrollTo" href="#home">
+          <img src="images/AI.png" alt="" width="50" height="50" />
+          <span class="hidden-xs">Avinash&#39;s Blog</span>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <!-- Fullscreen Button - Unavailable for IE -->
+        <a href="#" class="btn-fullscreen"><i class="fa fa-external-link"></i></a>
+
+        <ul class="nav navbar-nav navbar-right">
+          <!-- If the user wants to make articles the home page then remove blog link, and make about and work links point to old home page. -->
+            <li><a href="https://atamby1.github.io/index.html#home">Home</a></li>
+            <li><a href="https://atamby1.github.io/index.html#about">About</a></li>
+            <li><a href="https://atamby1.github.io/blog.html">Blog</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
+              <ul class="dropdown-menu" style="background-color:#000">
+                <li style="background-color:#000"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+                <li style="background-color:#000"><a href="http://python.org/" target="_blank">Python.org</a></li>
+                <li style="background-color:#000"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+                <li style="background-color:#000"><a href="#" target="_blank">You can modify those links in your config file</a></li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+
+    </div>
+  </nav>
+</header>
+<!-- /Main Nav -->  <section id="blog">
+    <article class="container">
+
+      <div class="row">
+        <div id="blog_main_area" class="left col-md-9">
+  <!-- article title -->
+  <header>
+      <h1>Analyzing SAT Scores by State</h1>
+    <small class="fsize13">
+            <a href="https://atamby1.github.io/category/projects.html" rel="tag tooltip" class="label label-default light" data-placement="right" data-original-title="1 article in this category"><i class="fa fa-dot-circle-o"></i> Projects</a>
+      <a href="https://atamby1.github.io/analyzing-sat-scores-by-state.html#disqus_thread" class="scrollTo label label-default light" data-disqus-identifier="analyzing-sat-scores-by-state.html"><i class="fa fa-comment-o"></i> ?? Comments</a>
+      <span class="label label-default light">Sat 03 December 2016</span> 
+    </small>
+  </header>
+
+  <article class='content'>
+    <h4>Preliminary Information</h4>
+<p>In this project, I take a look at SAT score averages of college-bound seniors and percentage of graduates taking SAT, by state or jurisdiction for the year 2000-2001. The data is taken from the <a href="https://nces.ed.gov/programs/digest/d07/tables/dt07_137.asp">National Center for Education Statistics</a>.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span> <span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/sat_scores.csv&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>  State  Rate  Verbal  Math
+0    CT    82     509   510
+1    NJ    81     499   513
+2    MA    79     511   515
+3    NY    77     495   505
+4    NH    72     520   516
+   State  Rate  Verbal  Math
+47    IA     5     593   603
+48    SD     4     577   582
+49    ND     4     592   599
+50    MS     4     566   551
+51   All    45     506   514
+(52, 4)
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;Average Verbal score across all states &amp; DC:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">51.</span>
+<span class="k">print</span> <span class="s1">&#39;Average Math score across all states &amp; DC:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">51.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>State     0
+Rate      0
+Verbal    0
+Math      0
+dtype: int64
+
+Average Verbal score across all states &amp; DC: 532.529411765
+Average Math score across all states &amp; DC: 531.843137255
+</pre></div>
+
+
+<h4>Describing the data</h4>
+<p>The data contain 52 rows representing the 50 US states, DC and All. For each row, the <code>State</code> column lists the state, the <code>Rate</code> column represents the percent of high school graduates taking the SAT, the <code>Math</code> column represents the average Math section score in the state and the <code>Verbal</code> column represents the average Verbal section score in the state.</p>
+<p>The data look complete and the only issue I'm having with the observations is the 52nd row with <code>All</code> in the <code>State</code> column. It's not the average across all states but the numbers differ from what I calculate the nationwide averages to be. This row is also not in the original NCES data, so I'm going to take it out.</p>
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="mi">51</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>  State  Rate  Verbal  Math
+0    CT    82     509   510
+1    NJ    81     499   513
+2    MA    79     511   515
+3    NY    77     495   505
+4    NH    72     520   516
+   State  Rate  Verbal  Math
+46    UT     5     575   570
+47    IA     5     593   603
+48    SD     4     577   582
+49    ND     4     592   599
+50    MS     4     566   551
+</pre></div>
+
+
+<h5>Create a data dictionary for the dataset.</h5>
+<p>Below, I create a dictionary with the column names as the keys and the values in each column as the dictionary values. This is not a particularly helpful dictionary because there is no easy way to know which scores correspond to which states.</p>
+<div class="highlight"><pre><span></span><span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;State&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+             <span class="s1">&#39;Rate&#39;</span><span class="p">:</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+             <span class="s1">&#39;Verbal&#39;</span><span class="p">:</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+             <span class="s1">&#39;Math&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+             <span class="p">}</span>
+
+<span class="k">print</span> <span class="n">data_dict</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;Math&#39;: [510, 513, 515, 505, 516, 499, 499, 506, 500, 501, 499, 510, 499, 489, 501, 488, 474, 526, 499, 527, 499, 515, 510, 517, 525, 515, 542, 439, 539, 512, 542, 553, 542, 589, 550, 545, 572, 589, 580, 554, 568, 561, 577, 562, 596, 550, 570, 603, 582, 599, 551], &#39;State&#39;: [&#39;CT&#39;, &#39;NJ&#39;, &#39;MA&#39;, &#39;NY&#39;, &#39;NH&#39;, &#39;RI&#39;, &#39;PA&#39;, &#39;VT&#39;, &#39;ME&#39;, &#39;VA&#39;, &#39;DE&#39;, &#39;MD&#39;, &#39;NC&#39;, &#39;GA&#39;, &#39;IN&#39;, &#39;SC&#39;, &#39;DC&#39;, &#39;OR&#39;, &#39;FL&#39;, &#39;WA&#39;, &#39;TX&#39;, &#39;HI&#39;, &#39;AK&#39;, &#39;CA&#39;, &#39;AZ&#39;, &#39;NV&#39;, &#39;CO&#39;, &#39;OH&#39;, &#39;MT&#39;, &#39;WV&#39;, &#39;ID&#39;, &#39;TN&#39;, &#39;NM&#39;, &#39;IL&#39;, &#39;KY&#39;, &#39;WY&#39;, &#39;MI&#39;, &#39;MN&#39;, &#39;KS&#39;, &#39;AL&#39;, &#39;NE&#39;, &#39;OK&#39;, &#39;MO&#39;, &#39;LA&#39;, &#39;WI&#39;, &#39;AR&#39;, &#39;UT&#39;, &#39;IA&#39;, &#39;SD&#39;, &#39;ND&#39;, &#39;MS&#39;], &#39;Rate&#39;: [82, 81, 79, 77, 72, 71, 71, 69, 69, 68, 67, 65, 65, 63, 60, 57, 56, 55, 54, 53, 53, 52, 51, 51, 34, 33, 31, 26, 23, 18, 17, 13, 13, 12, 12, 11, 11, 9, 9, 9, 8, 8, 8, 7, 6, 6, 5, 5, 4, 4, 4], &#39;Verbal&#39;: [509, 499, 511, 495, 520, 501, 500, 511, 506, 510, 501, 508, 493, 491, 499, 486, 482, 526, 498, 527, 493, 485, 514, 498, 523, 509, 539, 534, 539, 527, 543, 562, 551, 576, 550, 547, 561, 580, 577, 559, 562, 567, 577, 564, 584, 562, 575, 593, 577, 592, 566]}
+</pre></div>
+
+
+<h5>Load the data into a list of lists</h5>
+<p>Here, I simply transform the pandas dataframe into a list of lists, where each column in the dataframe is a list in the list of lists.</p>
+<div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+
+
+<h5>Print the data</h5>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">data</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[[&#39;CT&#39;, &#39;NJ&#39;, &#39;MA&#39;, &#39;NY&#39;, &#39;NH&#39;, &#39;RI&#39;, &#39;PA&#39;, &#39;VT&#39;, &#39;ME&#39;, &#39;VA&#39;, &#39;DE&#39;, &#39;MD&#39;, &#39;NC&#39;, &#39;GA&#39;, &#39;IN&#39;, &#39;SC&#39;, &#39;DC&#39;, &#39;OR&#39;, &#39;FL&#39;, &#39;WA&#39;, &#39;TX&#39;, &#39;HI&#39;, &#39;AK&#39;, &#39;CA&#39;, &#39;AZ&#39;, &#39;NV&#39;, &#39;CO&#39;, &#39;OH&#39;, &#39;MT&#39;, &#39;WV&#39;, &#39;ID&#39;, &#39;TN&#39;, &#39;NM&#39;, &#39;IL&#39;, &#39;KY&#39;, &#39;WY&#39;, &#39;MI&#39;, &#39;MN&#39;, &#39;KS&#39;, &#39;AL&#39;, &#39;NE&#39;, &#39;OK&#39;, &#39;MO&#39;, &#39;LA&#39;, &#39;WI&#39;, &#39;AR&#39;, &#39;UT&#39;, &#39;IA&#39;, &#39;SD&#39;, &#39;ND&#39;, &#39;MS&#39;], [82, 81, 79, 77, 72, 71, 71, 69, 69, 68, 67, 65, 65, 63, 60, 57, 56, 55, 54, 53, 53, 52, 51, 51, 34, 33, 31, 26, 23, 18, 17, 13, 13, 12, 12, 11, 11, 9, 9, 9, 8, 8, 8, 7, 6, 6, 5, 5, 4, 4, 4], [509, 499, 511, 495, 520, 501, 500, 511, 506, 510, 501, 508, 493, 491, 499, 486, 482, 526, 498, 527, 493, 485, 514, 498, 523, 509, 539, 534, 539, 527, 543, 562, 551, 576, 550, 547, 561, 580, 577, 559, 562, 567, 577, 564, 584, 562, 575, 593, 577, 592, 566], [510, 513, 515, 505, 516, 499, 499, 506, 500, 501, 499, 510, 499, 489, 501, 488, 474, 526, 499, 527, 499, 515, 510, 517, 525, 515, 542, 439, 539, 512, 542, 553, 542, 589, 550, 545, 572, 589, 580, 554, 568, 561, 577, 562, 596, 550, 570, 603, 582, 599, 551]]
+</pre></div>
+
+
+<h5>Extract a list of the labels from the data, and remove them from the data.</h5>
+<div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># Extract a list of the labels from the data</span>
+<span class="k">print</span> <span class="n">labels</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="n">data</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">[&#39;Math&#39;, &#39;State&#39;, &#39;Rate&#39;, &#39;Verbal&#39;]</span>
+
+<span class="k">[[&#39;CT&#39;, &#39;NJ&#39;, &#39;MA&#39;, &#39;NY&#39;, &#39;NH&#39;, &#39;RI&#39;, &#39;PA&#39;, &#39;VT&#39;, &#39;ME&#39;, &#39;VA&#39;, &#39;DE&#39;, &#39;MD&#39;, &#39;NC&#39;, &#39;GA&#39;, &#39;IN&#39;, &#39;SC&#39;, &#39;DC&#39;, &#39;OR&#39;, &#39;FL&#39;, &#39;WA&#39;, &#39;TX&#39;, &#39;HI&#39;, &#39;AK&#39;, &#39;CA&#39;, &#39;AZ&#39;, &#39;NV&#39;, &#39;CO&#39;, &#39;OH&#39;, &#39;MT&#39;, &#39;WV&#39;, &#39;ID&#39;, &#39;TN&#39;, &#39;NM&#39;, &#39;IL&#39;, &#39;KY&#39;, &#39;WY&#39;, &#39;MI&#39;, &#39;MN&#39;, &#39;KS&#39;, &#39;AL&#39;, &#39;NE&#39;, &#39;OK&#39;, &#39;MO&#39;, &#39;LA&#39;, &#39;WI&#39;, &#39;AR&#39;, &#39;UT&#39;, &#39;IA&#39;, &#39;SD&#39;, &#39;ND&#39;, &#39;MS&#39;], [82, 81, 79, 77, 72, 71, 71, 69, 69, 68, 67, 65, 65, 63, 60, 57, 56, 55, 54, 53, 53, 52, 51, 51, 34, 33, 31, 26, 23, 18, 17, 13, 13, 12, 12, 11, 11, 9, 9, 9, 8, 8, 8, 7, 6, 6, 5, 5, 4, 4, 4], [509, 499, 511, 495, 520, 501, 500, 511, 506, 510, 501, 508, 493, 491, 499, 486, 482, 526, 498, 527, 493, 485, 514, 498, 523, 509, 539, 534, 539, 527, 543, 562, 551, 576, 550, 547, 561, 580, 577, 559, 562, 567, 577, 564, 584, 562, 575, 593, 577, 592, 566], [510, 513, 515, 505, 516, 499, 499, 506, 500, 501, 499, 510, 499, 489, 501, 488, 474, 526, 499, 527, 499, 515, 510, 517, 525, 515, 542, 439, 539, 512, 542, 553, 542, 589, 550, 545, 572, 589, 580, 554, 568, 561, 577, 562, 596, 550, 570, 603, 582, 599, 551]]</span>
+</pre></div>
+
+
+<h5>Create a list of State names extracted from the data. (Hint: use the list of labels to index on the State column)</h5>
+<div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># list of States names extracted from the data</span>
+<span class="k">print</span> <span class="n">names</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[&#39;CT&#39;, &#39;NJ&#39;, &#39;MA&#39;, &#39;NY&#39;, &#39;NH&#39;, &#39;RI&#39;, &#39;PA&#39;, &#39;VT&#39;, &#39;ME&#39;, &#39;VA&#39;, &#39;DE&#39;, &#39;MD&#39;, &#39;NC&#39;, &#39;GA&#39;, &#39;IN&#39;, &#39;SC&#39;, &#39;DC&#39;, &#39;OR&#39;, &#39;FL&#39;, &#39;WA&#39;, &#39;TX&#39;, &#39;HI&#39;, &#39;AK&#39;, &#39;CA&#39;, &#39;AZ&#39;, &#39;NV&#39;, &#39;CO&#39;, &#39;OH&#39;, &#39;MT&#39;, &#39;WV&#39;, &#39;ID&#39;, &#39;TN&#39;, &#39;NM&#39;, &#39;IL&#39;, &#39;KY&#39;, &#39;WY&#39;, &#39;MI&#39;, &#39;MN&#39;, &#39;KS&#39;, &#39;AL&#39;, &#39;NE&#39;, &#39;OK&#39;, &#39;MO&#39;, &#39;LA&#39;, &#39;WI&#39;, &#39;AR&#39;, &#39;UT&#39;, &#39;IA&#39;, &#39;SD&#39;, &#39;ND&#39;, &#39;MS&#39;]
+</pre></div>
+
+
+<h5>8. Print the types of each column</h5>
+<div class="highlight"><pre><span></span><span class="c1">#for i in range(len(data)):</span>
+<span class="c1">#    for j in range(len(names)):</span>
+<span class="c1">#        print type(data[i][j])</span>
+<span class="c1">#    print &#39;&#39;</span>
+
+<span class="k">print</span> <span class="s1">&#39;Type of State column: &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">dtype</span>
+<span class="k">print</span> <span class="s1">&#39;Type of Rate column: &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="o">.</span><span class="n">dtype</span>
+<span class="k">print</span> <span class="s1">&#39;Type of Verbal column: &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="o">.</span><span class="n">dtype</span>
+<span class="k">print</span> <span class="s1">&#39;Type of Maath column: &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Type of State column:  object
+Type of Rate column:  int64
+Type of Verbal column:  int64
+Type of Maath column:  int64
+</pre></div>
+
+
+<h5>Do any types need to be reassigned? If so, go ahead and do it.</h5>
+<p>State names are all <code>object</code> and Rate, Verbal and Math are all <code>int64</code>, so no types need to be reassigned.</p>
+<h5>Create a dictionary for each column mapping the State to its respective value for that column.</h5>
+<p>Below, I create 3 different dictionaries: a rate dictionary, a verbal dictionary, and a math dictionary and each dictionary has the State name as the key and the participation rate, average verbal score, and average math score for that state in each dictionary, respectively.</p>
+<div class="highlight"><pre><span></span><span class="n">rate_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">verb_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">math_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">rate_dict</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">verb_dict</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">math_dict</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="k">print</span> <span class="n">rate_dict</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="n">verb_dict</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="n">math_dict</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;WA&#39;: 53, &#39;DE&#39;: 67, &#39;DC&#39;: 56, &#39;WI&#39;: 6, &#39;WV&#39;: 18, &#39;HI&#39;: 52, &#39;FL&#39;: 54, &#39;WY&#39;: 11, &#39;NH&#39;: 72, &#39;NJ&#39;: 81, &#39;NM&#39;: 13, &#39;TX&#39;: 53, &#39;LA&#39;: 7, &#39;NC&#39;: 65, &#39;ND&#39;: 4, &#39;NE&#39;: 8, &#39;TN&#39;: 13, &#39;NY&#39;: 77, &#39;PA&#39;: 71, &#39;RI&#39;: 71, &#39;NV&#39;: 33, &#39;VA&#39;: 68, &#39;CO&#39;: 31, &#39;AK&#39;: 51, &#39;AL&#39;: 9, &#39;AR&#39;: 6, &#39;VT&#39;: 69, &#39;IL&#39;: 12, &#39;GA&#39;: 63, &#39;IN&#39;: 60, &#39;IA&#39;: 5, &#39;OK&#39;: 8, &#39;AZ&#39;: 34, &#39;CA&#39;: 51, &#39;ID&#39;: 17, &#39;CT&#39;: 82, &#39;ME&#39;: 69, &#39;MD&#39;: 65, &#39;MA&#39;: 79, &#39;OH&#39;: 26, &#39;UT&#39;: 5, &#39;MO&#39;: 8, &#39;MN&#39;: 9, &#39;MI&#39;: 11, &#39;KS&#39;: 9, &#39;MT&#39;: 23, &#39;MS&#39;: 4, &#39;SC&#39;: 57, &#39;KY&#39;: 12, &#39;OR&#39;: 55, &#39;SD&#39;: 4}
+
+{&#39;WA&#39;: 527, &#39;DE&#39;: 501, &#39;DC&#39;: 482, &#39;WI&#39;: 584, &#39;WV&#39;: 527, &#39;HI&#39;: 485, &#39;FL&#39;: 498, &#39;WY&#39;: 547, &#39;NH&#39;: 520, &#39;NJ&#39;: 499, &#39;NM&#39;: 551, &#39;TX&#39;: 493, &#39;LA&#39;: 564, &#39;NC&#39;: 493, &#39;ND&#39;: 592, &#39;NE&#39;: 562, &#39;TN&#39;: 562, &#39;NY&#39;: 495, &#39;PA&#39;: 500, &#39;RI&#39;: 501, &#39;NV&#39;: 509, &#39;VA&#39;: 510, &#39;CO&#39;: 539, &#39;AK&#39;: 514, &#39;AL&#39;: 559, &#39;AR&#39;: 562, &#39;VT&#39;: 511, &#39;IL&#39;: 576, &#39;GA&#39;: 491, &#39;IN&#39;: 499, &#39;IA&#39;: 593, &#39;OK&#39;: 567, &#39;AZ&#39;: 523, &#39;CA&#39;: 498, &#39;ID&#39;: 543, &#39;CT&#39;: 509, &#39;ME&#39;: 506, &#39;MD&#39;: 508, &#39;MA&#39;: 511, &#39;OH&#39;: 534, &#39;UT&#39;: 575, &#39;MO&#39;: 577, &#39;MN&#39;: 580, &#39;MI&#39;: 561, &#39;KS&#39;: 577, &#39;MT&#39;: 539, &#39;MS&#39;: 566, &#39;SC&#39;: 486, &#39;KY&#39;: 550, &#39;OR&#39;: 526, &#39;SD&#39;: 577}
+
+{&#39;WA&#39;: 527, &#39;DE&#39;: 499, &#39;DC&#39;: 474, &#39;WI&#39;: 596, &#39;WV&#39;: 512, &#39;HI&#39;: 515, &#39;FL&#39;: 499, &#39;WY&#39;: 545, &#39;NH&#39;: 516, &#39;NJ&#39;: 513, &#39;NM&#39;: 542, &#39;TX&#39;: 499, &#39;LA&#39;: 562, &#39;NC&#39;: 499, &#39;ND&#39;: 599, &#39;NE&#39;: 568, &#39;TN&#39;: 553, &#39;NY&#39;: 505, &#39;PA&#39;: 499, &#39;RI&#39;: 499, &#39;NV&#39;: 515, &#39;VA&#39;: 501, &#39;CO&#39;: 542, &#39;AK&#39;: 510, &#39;AL&#39;: 554, &#39;AR&#39;: 550, &#39;VT&#39;: 506, &#39;IL&#39;: 589, &#39;GA&#39;: 489, &#39;IN&#39;: 501, &#39;IA&#39;: 603, &#39;OK&#39;: 561, &#39;AZ&#39;: 525, &#39;CA&#39;: 517, &#39;ID&#39;: 542, &#39;CT&#39;: 510, &#39;ME&#39;: 500, &#39;MD&#39;: 510, &#39;MA&#39;: 515, &#39;OH&#39;: 439, &#39;UT&#39;: 570, &#39;MO&#39;: 577, &#39;MN&#39;: 589, &#39;MI&#39;: 572, &#39;KS&#39;: 580, &#39;MT&#39;: 539, &#39;MS&#39;: 551, &#39;SC&#39;: 488, &#39;KY&#39;: 550, &#39;OR&#39;: 526, &#39;SD&#39;: 582}
+</pre></div>
+
+
+<h5>Create a dictionary with the values for each of the numeric columns</h5>
+<p>This is essentially a combindation of the 3 dictionaries from above.</p>
+<div class="highlight"><pre><span></span><span class="n">state_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">state_dict</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="k">print</span> <span class="n">state_dict</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;WA&#39;: (53, 527, 527), &#39;DE&#39;: (67, 501, 499), &#39;DC&#39;: (56, 482, 474), &#39;WI&#39;: (6, 584, 596), &#39;WV&#39;: (18, 527, 512), &#39;HI&#39;: (52, 485, 515), &#39;FL&#39;: (54, 498, 499), &#39;WY&#39;: (11, 547, 545), &#39;NH&#39;: (72, 520, 516), &#39;NJ&#39;: (81, 499, 513), &#39;NM&#39;: (13, 551, 542), &#39;TX&#39;: (53, 493, 499), &#39;LA&#39;: (7, 564, 562), &#39;NC&#39;: (65, 493, 499), &#39;ND&#39;: (4, 592, 599), &#39;NE&#39;: (8, 562, 568), &#39;TN&#39;: (13, 562, 553), &#39;NY&#39;: (77, 495, 505), &#39;PA&#39;: (71, 500, 499), &#39;RI&#39;: (71, 501, 499), &#39;NV&#39;: (33, 509, 515), &#39;VA&#39;: (68, 510, 501), &#39;CO&#39;: (31, 539, 542), &#39;AK&#39;: (51, 514, 510), &#39;AL&#39;: (9, 559, 554), &#39;AR&#39;: (6, 562, 550), &#39;VT&#39;: (69, 511, 506), &#39;IL&#39;: (12, 576, 589), &#39;GA&#39;: (63, 491, 489), &#39;IN&#39;: (60, 499, 501), &#39;IA&#39;: (5, 593, 603), &#39;OK&#39;: (8, 567, 561), &#39;AZ&#39;: (34, 523, 525), &#39;CA&#39;: (51, 498, 517), &#39;ID&#39;: (17, 543, 542), &#39;CT&#39;: (82, 509, 510), &#39;ME&#39;: (69, 506, 500), &#39;MD&#39;: (65, 508, 510), &#39;MA&#39;: (79, 511, 515), &#39;OH&#39;: (26, 534, 439), &#39;UT&#39;: (5, 575, 570), &#39;MO&#39;: (8, 577, 577), &#39;MN&#39;: (9, 580, 589), &#39;MI&#39;: (11, 561, 572), &#39;KS&#39;: (9, 577, 580), &#39;MT&#39;: (23, 539, 539), &#39;MS&#39;: (4, 566, 551), &#39;SC&#39;: (57, 486, 488), &#39;KY&#39;: (12, 550, 550), &#39;OR&#39;: (55, 526, 526), &#39;SD&#39;: (4, 577, 582)}
+</pre></div>
+
+
+<h2>Describe the data</h2>
+<h5>Print the min and max of each column</h5>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="s1">&#39;State(s) with the minimum participation rates:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;State(s) with the maximum participation rates:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;State(s) with the minimum average verbal scores:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;State(s) with the maximum average verbal scores:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;State(s) with the minimum average math scores:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;State(s) with the maximum average math scores:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)]</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>State(s) with the minimum participation rates:
+   State  Rate  Verbal  Math
+48    SD     4     577   582
+49    ND     4     592   599
+50    MS     4     566   551
+
+State(s) with the maximum participation rates:
+  State  Rate  Verbal  Math
+0    CT    82     509   510
+
+State(s) with the minimum average verbal scores:
+   State  Rate  Verbal  Math
+16    DC    56     482   474
+
+State(s) with the maximum average verbal scores:
+   State  Rate  Verbal  Math
+47    IA     5     593   603
+
+State(s) with the minimum average math scores:
+   State  Rate  Verbal  Math
+27    OH    26     534   439
+
+State(s) with the maximum average math scores:
+   State  Rate  Verbal  Math
+47    IA     5     593   603
+</pre></div>
+
+
+<h5>Write a function using only list comprehensions, no loops, to compute Standard Deviation. Print the Standard Deviation of each numeric column.</h5>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">std</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">std</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Standard Deviation for Participation Rate: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">std</span><span class="p">(</span><span class="s1">&#39;Rate&#39;</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Standard Deviation for Average Verbal Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">std</span><span class="p">(</span><span class="s1">&#39;Verbal&#39;</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Standard Deviation for Average Math Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">std</span><span class="p">(</span><span class="s1">&#39;Math&#39;</span><span class="p">)))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Standard Deviation for Participation Rate: 27.5506805724
+Standard Deviation for Average Verbal Score: 33.3606672242
+Standard Deviation for Average Math Score: 36.2873931547
+</pre></div>
+
+
+<h2>Visualize the data</h2>
+<h5>Using MatPlotLib and PyPlot, plot the distribution of the Rate using histograms.</h5>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Participation Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Participation Rate Histogram&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x114584450&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_30_1.png" /></p>
+<p>This histogram has a clear bimodal distribution. There is a set of states where the participation is below 40% and another set where participation rate is above 40%.</p>
+<h5>Plot the Math distribution</h5>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">410</span><span class="p">,</span> <span class="mi">610</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Average Math Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Math Score Histogram&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x115526810&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_33_1.png" /></p>
+<p>One state (which I know to be Ohio from printing the minimum average math score earlier has a <em>much</em> lower average math score than all of the other states.</p>
+<h5>16. Plot the Verbal distribution</h5>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Average Verbal Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Verbal Score Histogram&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x11562ce10&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_36_1.png" /></p>
+<h5>What is the typical assumption for data distribution?</h5>
+<p>The typical assumption for data distribution is that is it normally distributed.</p>
+<h5>Does that distribution hold true for our data?</h5>
+<p>That distribution does not hold true for our data.</p>
+<h5>Plot some scatterplots. <strong>BONUS</strong>: Use a PyPlot <code>figure</code> to present multiple plots at once.</h5>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Verbal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Math&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Math v. Verbal&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x115baee50&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_42_1.png" /></p>
+<p>Ohio is a pretty clear outlier, so I'm going to check the source data to make sure something isn't amiss. The true data says Ohio's average Verbal score is 534 and average Math score is 539. Let's take a look at our data:</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span> <span class="o">==</span> <span class="s1">&#39;OH&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Rate</th>
+      <th>Verbal</th>
+      <th>Math</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>27</th>
+      <td>OH</td>
+      <td>26</td>
+      <td>534</td>
+      <td>439</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>There was indeed a data entry error, so I change Ohio's average math score from 439 to 539.</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">[</span><span class="mi">27</span><span class="p">]</span> <span class="o">=</span> <span class="mi">539</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  if __name__ == &#39;__main__&#39;:
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span> <span class="o">==</span> <span class="s1">&#39;OH&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Rate</th>
+      <th>Verbal</th>
+      <th>Math</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>27</th>
+      <td>OH</td>
+      <td>26</td>
+      <td>534</td>
+      <td>539</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Now, I find the actual state that has the lowest average math score, replot the math distribution and replot the math v. verbal scatter plot.</p>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="s1">&#39;State(s) with the minimum average math scores:&#39;</span>
+<span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>State(s) with the minimum average math scores:
+   State  Rate  Verbal  Math
+16    DC    56     482   474
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">450</span><span class="p">,</span> <span class="mi">610</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Average Math Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Math Score Histogram&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x115e24510&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_50_1.png" /></p>
+<div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Average Verbal Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Average Math Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Math Score v. Average Verbal Score&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x1160f0d50&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_51_1.png" /></p>
+<div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>    <span class="c1"># The big subplot</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span> <span class="c1">#numbers are: nrows, ncols, place counting through rows then cols</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+
+<span class="c1"># Turn off axis lines and ticks of the big subplot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Participation Rate&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Average Verbal Score&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Average Math Score&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average Scores v. Participation Rate&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x1164ab2d0&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_52_1.png" /></p>
+<h5>Are there any interesting relationships to note?</h5>
+<p>Math and verbal scores appear to be positively correlated. As verbal scores increase, so do math scores.</p>
+<p>For both math and verbal, it appears that the highest scores are at the lowest rate. Also, as I noted before, there are 2 distinct sets in terms of participation: states where participation is below 40% and states where participation is above 40%, so I separate them.</p>
+<div class="highlight"><pre><span></span><span class="n">df_u40</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">df_a40</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>    <span class="c1"># The big subplot</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span> <span class="c1">#numbers are: nrows, ncols, place counting through rows then cols</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+
+<span class="c1"># Turn off axis lines and ticks of the big subplot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">df_u40</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">df_u40</span><span class="o">.</span><span class="n">Verbal</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">df_a40</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">df_a40</span><span class="o">.</span><span class="n">Verbal</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">df_u40</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">df_u40</span><span class="o">.</span><span class="n">Math</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">df_a40</span><span class="o">.</span><span class="n">Rate</span><span class="p">,</span> <span class="n">df_a40</span><span class="o">.</span><span class="n">Math</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax4</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Rate&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Average Verbal Score&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Average Math Score&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average Scores v. Participation Rate&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x1169a3b10&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_55_1.png" /></p>
+<p>Now that I've separated the low participation rate states from the high participation rate states, I notice a clear negatively correlated linear relationship between scores and participation rate for the low participation rate states, but no clear pattern or relationship for score vs. participation rate for high participation rate states.</p>
+<p>I wanted to find out why there were some states that had very low participation rates, while others had high and why there was a negative trend as participation rate increased. There are some states</p>
+<h5>Create box plots for each variable.</h5>
+<div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>    <span class="c1"># The big subplot</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="c1"># Turn off axis lines and ticks of the big subplot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rate</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Verbal</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Math</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">470</span><span class="p">,</span> <span class="mi">610</span><span class="p">])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">470</span><span class="p">,</span> <span class="mi">610</span><span class="p">])</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Participation Rate&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Average Verbal Score&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Average Math Score&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&lt;matplotlib.text.Text at 0x116eead10&gt;
+</pre></div>
+
+
+<p><img alt="png" src="images/output_58_1.png" /></p>
+<p>These box plots help provide a clearer visualization for the range of the distribution of variables. The black line at the very bottom is the minimum, the blue dashed line from the bottom tick to the bottom of the box is the 1st quartile, the bottom of the blue box is the 25th percentile, the red line is the median or 50th percentile, the top of the box is the 75th percentile and the black line at the top is the maximum. The blue box represents the range from the 25th percentile to the 75th percentile, which is also known as the interquartile range or IQR.</p>
+<p>I put the the verbal and math box plots on the same range so it would be easier to compare the two.</p>
+<h5>Using Tableau, create a heat map for each variable using a map of the US.</h5>
+<div class="highlight"><pre><span></span><span class="c1">## I export updated dataframe (fixed the Ohio Math score) to csv so that I can create a heat map in Tableau with the correct data.</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;2001_sat_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;tableauPlaceholder&#39;</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;viz1480790946483&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;position: relative&#39;</span><span class="o">&gt;&lt;</span><span class="n">noscript</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="o">&gt;&lt;</span><span class="n">img</span> <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;2001 SAT Participation Rate by State &#39;</span> <span class="n">src</span><span class="o">=</span><span class="s1">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATParticipationRatebyState&amp;#47;Sheet1&amp;#47;1_rss.png&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;border: none&#39;</span> <span class="o">/&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">noscript</span><span class="o">&gt;&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;tableauViz&#39;</span>  <span class="n">style</span><span class="o">=</span><span class="s1">&#39;display:none;&#39;</span><span class="o">&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;host_url&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;https%3A</span><span class="si">%2F%2F</span><span class="s1">public.tableau.com</span><span class="si">%2F</span><span class="s1">&#39;</span> <span class="o">/&gt;</span> <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;site_root&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;name&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;2001SATParticipationRatebyState&amp;#47;Sheet1&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tabs&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;no&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;toolbar&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;static_image&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATParticipationRatebyState&amp;#47;Sheet1&amp;#47;1.png&#39;</span> <span class="o">/&gt;</span> <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;animate_transition&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_static_image&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_spinner&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_overlay&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_count&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;/</span><span class="nb">object</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>                <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="o">&gt;</span>                    <span class="n">var</span> <span class="n">divElement</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;viz1480790946483&#39;</span><span class="p">);</span>                    <span class="n">var</span> <span class="n">vizElement</span> <span class="o">=</span> <span class="n">divElement</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>                    <span class="n">vizElement</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">;</span><span class="n">vizElement</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">height</span><span class="o">=</span><span class="p">(</span><span class="n">divElement</span><span class="o">.</span><span class="n">offsetWidth</span><span class="o">*</span><span class="mf">0.75</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">;</span>                    <span class="n">var</span> <span class="n">scriptElement</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>                    <span class="n">scriptElement</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;</span><span class="p">;</span>                    <span class="n">vizElement</span><span class="o">.</span><span class="n">parentNode</span><span class="o">.</span><span class="n">insertBefore</span><span class="p">(</span><span class="n">scriptElement</span><span class="p">,</span> <span class="n">vizElement</span><span class="p">);</span>                <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<div class='tableauPlaceholder' id='viz1480790946483' style='position: relative'><noscript><a href='#'><img alt='2001 SAT Participation Rate by State ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2001SATParticipationRatebyState&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='2001SATParticipationRatebyState&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2001SATParticipationRatebyState&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+
+<div class="highlight"><pre><span></span>            <span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>                    var divElement = document.getElementById(&#39;viz1480790946483&#39;);                    var vizElement = divElement.getElementsByTagName(&#39;object&#39;)[0];                    vizElement.style.width=&#39;100%&#39;;vizElement.style.height=(divElement.offsetWidth*0.75)+&#39;px&#39;;                    var scriptElement = document.createElement(&#39;script&#39;);                    scriptElement.src = &#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;;                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                <span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;tableauPlaceholder&#39;</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;viz1480790923799&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;position: relative&#39;</span><span class="o">&gt;&lt;</span><span class="n">noscript</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="o">&gt;&lt;</span><span class="n">img</span> <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;2001 SAT Average Math Score by State &#39;</span> <span class="n">src</span><span class="o">=</span><span class="s1">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageMathScorebyState&amp;#47;Sheet2&amp;#47;1_rss.png&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;border: none&#39;</span> <span class="o">/&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">noscript</span><span class="o">&gt;&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;tableauViz&#39;</span>  <span class="n">style</span><span class="o">=</span><span class="s1">&#39;display:none;&#39;</span><span class="o">&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;host_url&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;https%3A</span><span class="si">%2F%2F</span><span class="s1">public.tableau.com</span><span class="si">%2F</span><span class="s1">&#39;</span> <span class="o">/&gt;</span> <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;site_root&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;name&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;2001SATAverageMathScorebyState&amp;#47;Sheet2&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tabs&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;no&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;toolbar&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;static_image&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageMathScorebyState&amp;#47;Sheet2&amp;#47;1.png&#39;</span> <span class="o">/&gt;</span> <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;animate_transition&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_static_image&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_spinner&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_overlay&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_count&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;/</span><span class="nb">object</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>                <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="o">&gt;</span>                    <span class="n">var</span> <span class="n">divElement</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;viz1480790923799&#39;</span><span class="p">);</span>                    <span class="n">var</span> <span class="n">vizElement</span> <span class="o">=</span> <span class="n">divElement</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>                    <span class="n">vizElement</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">;</span><span class="n">vizElement</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">height</span><span class="o">=</span><span class="p">(</span><span class="n">divElement</span><span class="o">.</span><span class="n">offsetWidth</span><span class="o">*</span><span class="mf">0.75</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">;</span>                    <span class="n">var</span> <span class="n">scriptElement</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>                    <span class="n">scriptElement</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;</span><span class="p">;</span>                    <span class="n">vizElement</span><span class="o">.</span><span class="n">parentNode</span><span class="o">.</span><span class="n">insertBefore</span><span class="p">(</span><span class="n">scriptElement</span><span class="p">,</span> <span class="n">vizElement</span><span class="p">);</span>                <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<div class='tableauPlaceholder' id='viz1480790923799' style='position: relative'><noscript><a href='#'><img alt='2001 SAT Average Math Score by State ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2001SATAverageMathScorebyState&#47;Sheet2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='2001SATAverageMathScorebyState&#47;Sheet2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2001SATAverageMathScorebyState&#47;Sheet2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+
+<div class="highlight"><pre><span></span>            <span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>                    var divElement = document.getElementById(&#39;viz1480790923799&#39;);                    var vizElement = divElement.getElementsByTagName(&#39;object&#39;)[0];                    vizElement.style.width=&#39;100%&#39;;vizElement.style.height=(divElement.offsetWidth*0.75)+&#39;px&#39;;                    var scriptElement = document.createElement(&#39;script&#39;);                    scriptElement.src = &#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;;                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                <span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;tableauPlaceholder&#39;</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;viz1480790903597&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;position: relative&#39;</span><span class="o">&gt;&lt;</span><span class="n">noscript</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="o">&gt;&lt;</span><span class="n">img</span> <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;2001 SAT Average Verbal Score by State &#39;</span> <span class="n">src</span><span class="o">=</span><span class="s1">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&amp;#47;1_rss.png&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;border: none&#39;</span> <span class="o">/&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">noscript</span><span class="o">&gt;&lt;</span><span class="nb">object</span> <span class="n">class</span><span class="o">=</span><span class="s1">&#39;tableauViz&#39;</span>  <span class="n">style</span><span class="o">=</span><span class="s1">&#39;display:none;&#39;</span><span class="o">&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;host_url&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;https%3A</span><span class="si">%2F%2F</span><span class="s1">public.tableau.com</span><span class="si">%2F</span><span class="s1">&#39;</span> <span class="o">/&gt;</span> <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;site_root&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;name&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tabs&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;no&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;toolbar&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;static_image&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&amp;#47;1.png&#39;</span> <span class="o">/&gt;</span> <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;animate_transition&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_static_image&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_spinner&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_overlay&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;display_count&#39;</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span> <span class="o">/&gt;&lt;/</span><span class="nb">object</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>                <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="o">&gt;</span>                    <span class="n">var</span> <span class="n">divElement</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;viz1480790903597&#39;</span><span class="p">);</span>                    <span class="n">var</span> <span class="n">vizElement</span> <span class="o">=</span> <span class="n">divElement</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>                    <span class="n">vizElement</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">;</span><span class="n">vizElement</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">height</span><span class="o">=</span><span class="p">(</span><span class="n">divElement</span><span class="o">.</span><span class="n">offsetWidth</span><span class="o">*</span><span class="mf">0.75</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">;</span>                    <span class="n">var</span> <span class="n">scriptElement</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>                    <span class="n">scriptElement</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;</span><span class="p">;</span>                    <span class="n">vizElement</span><span class="o">.</span><span class="n">parentNode</span><span class="o">.</span><span class="n">insertBefore</span><span class="p">(</span><span class="n">scriptElement</span><span class="p">,</span> <span class="n">vizElement</span><span class="p">);</span>                <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<div class='tableauPlaceholder' id='viz1480790903597' style='position: relative'><noscript><a href='#'><img alt='2001 SAT Average Verbal Score by State ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2001SATAverageVerbalScorebyState&#47;Sheet3&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='2001SATAverageVerbalScorebyState&#47;Sheet3' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2001SATAverageVerbalScorebyState&#47;Sheet3&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+
+<div class="highlight"><pre><span></span>            <span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>                    var divElement = document.getElementById(&#39;viz1480790903597&#39;);                    var vizElement = divElement.getElementsByTagName(&#39;object&#39;)[0];                    vizElement.style.width=&#39;100%&#39;;vizElement.style.height=(divElement.offsetWidth*0.75)+&#39;px&#39;;                    var scriptElement = document.createElement(&#39;script&#39;);                    scriptElement.src = &#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;;                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                <span class="nt">&lt;/script&gt;</span>
+</pre></div>
+  </article>
+
+  <div class="divider"><!-- lines divider --></div>
+
+  <!-- SOCIAL -->
+<p class="socials">
+    <a href="http://www.facebook.com/sharer/sharer.php?u=https://atamby1.github.io/analyzing-sat-scores-by-state.html" class="rounded-icon social fa fa-facebook" target="_blank" title="Share on Facebook"><!-- facebook --></a>
+    <a href="http://twitter.com/home?status=https://atamby1.github.io/analyzing-sat-scores-by-state.html" class="rounded-icon social fa fa-twitter" target="_blank" title="Share on Twitter"><!-- twitter --></a>
+    <a href="https://plus.google.com/share?url=https://atamby1.github.io/analyzing-sat-scores-by-state.html" class="rounded-icon social fa fa-google-plus" target="_blank" title="Share on Google+"><!-- google plus --></a>
+    <a href="http://pinterest.com/pin/create/link/?url==https://atamby1.github.io/analyzing-sat-scores-by-state.html" class="rounded-icon social fa fa-pinterest"  target="_blank" title="Share on Pinterest"><!-- pinterest --></a>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://atamby1.github.io/analyzing-sat-scores-by-state.html&title=Analyzing SAT Scores by State&summary=&source=" class="rounded-icon social fa fa-linkedin" target="_blank" title="Share on Linkedin"><!-- linkedin --></a>
+</p>  
+
+  <!-- TAGS -->
+  <p class="fsize16"> Tags:
+        <a href="/tag/projects.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="1 article with this tag"><i class="fa fa-tags"></i> Projects</a>
+  </p>
+
+  <hr /><!-- divider -->
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="right col-md-3">
+          <!-- recent work -->
+          <!-- <div class="widget">
+
+                      <h3>Recent Work</h3>
+
+                      <a class="popup-image thumb" href="assets/images/preview/slider/1.jpg">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="popup-video thumb" href="http://www.youtube.com/watch?v=kh29_SERH0Y?rel=0">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="popup-video thumb" href="http://vimeo.com/23630702">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+                      </a>
+
+                      <a class="external ajax-project thumb" href="project-external-1.html">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="external ajax-project thumb" href="project-external-2.html">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="external ajax-project thumb" href="project-external-3.html">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+                      </a>
+
+                      <div class="clearfix"></div>
+                  </div> -->
+
+          <!-- categories -->
+          <div class="widget">
+
+            <h3>Categories</h3>
+
+            <ul>
+               <li><a class="theme_link" href="https://atamby1.github.io/category/getting-started.html"><i class="fa fa-dot-circle-o"></i> Getting Started</a>
+              </li>
+              <li><a class="theme_link" href="https://atamby1.github.io/category/projects.html"><i class="fa fa-dot-circle-o"></i> Projects</a>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Archives -->
+          <div class="widget">
+
+            <h3>Archives</h3>
+
+            <!-- Get all of the articles with their dates -->
+            <div class="hidden">
+                None
+                None
+            </div>
+
+            <!-- If the user indicates they prefer a list.-->                <ul class="tree">
+                    <li>
+                        <span><i class="fa fa-minus-square-o"></i>2016</span>
+                        <ul>
+                            <li>
+                                <span><i class="fa fa-plus-square-o"></i>12</span>
+                                <ul>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/analyzing-sat-scores-by-state.html">
+                                            <small>Sat 03 December 2016</small>Analyzing SAT Scores by State</a>
+                                        </li>
+                                </ul>
+                                <span><i class="fa fa-plus-square-o"></i>11</span>
+                                <ul>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html">
+                                            <small>Sun 20 November 2016</small>Start Blogging with GitHub Pages and Pelican</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        </ul></li>
+                </ul></div>
+
+        </div>
+        <!-- /SIDEBAR -->
+
+      </div>
+
+    </article>
+  </section>
+  <!-- /BLOG -->
+
+<!-- FOOTER -->
+<footer>
+
+  <!-- SCROLL TO TOP -->
+  <a href="#toTop" class="fa fa-arrow-up toTop"></a>
+
+  <div class="container">
+
+    <div class="row">
+
+        <div class="col-md-6 text-left">
+
+            <br/>Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org/">Python</a>.
+
+            <br/>Theme by <a href="https://github.com/KenMercusLai/BT3-Flat">Ken Marcus Lai</a>
+
+             <br/>Copyright &copy; 2016 Avinash TAMBY All Rights Reserved.
+
+        </div>
+
+        <div class="col-md-6 text-right">
+              <a href="https://github.com/atamby1" class="social fa fa-github" target="_blank"></a>
+              <a href="https://www.linkedin.com/in/avinashtamby" class="social fa fa-linkedin" target="_blank"></a>
+              <a href="mailto:atamby1@gmail.com" class="social fa fa-envelope" target="_blank"></a>
+              <a href="https://www.facebook.com/avinash.tamby" class="social fa fa-facebook" target="_blank"></a>
+              <a href="https://twitter.com/atamby1" class="social fa fa-twitter" target="_blank"></a>
+
+            <br/>Thank you <a href="http://motherboard.vice.com/read/the-dominant-life-form-in-the-cosmos-is-probably-superintelligent-robots">Motherboard</a> for the beautiful background image.
+        </div>
+
+    </div>
+
+  </div>
+</footer>
+<!-- /FOOTER -->
+
+
+
+<!-- CORE FILES -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.isotope.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/masonry.js"></script>
+
+<!-- PLUGINS -->
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.fitvids.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.appear.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.superslides.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.countTo.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/holder.js"></script>
+<!-- delete on production -->
+
+<!-- js scripts -->
+<script async type="text/javascript" src="https://atamby1.github.io/theme/js/scripts.js"></script>
+
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/ImageAutoResize.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/application.js"></script>
+
+
+
+
+
+</body>
+
+</html>
