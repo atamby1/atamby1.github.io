@@ -277,7 +277,7 @@ Standard Deviation for Average Math Score: 36.2873931547
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_30_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_30_1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This histogram has a clear bimodal distribution. There is a set of states where the participation is below 40% and another set where participation rate is above 40%.&lt;/p&gt;
 &lt;h5&gt;Plot the Math distribution&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -292,7 +292,7 @@ Standard Deviation for Average Math Score: 36.2873931547
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_33_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_33_1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;One state (which I know to be Ohio from printing the minimum average math score earlier has a &lt;em&gt;much&lt;/em&gt; lower average math score than all of the other states.&lt;/p&gt;
 &lt;h5&gt;16. Plot the Verbal distribution&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Verbal&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -307,7 +307,7 @@ Standard Deviation for Average Math Score: 36.2873931547
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_36_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_36_1.png" /&gt;&lt;/p&gt;
 &lt;h5&gt;What is the typical assumption for data distribution?&lt;/h5&gt;
 &lt;p&gt;The typical assumption for data distribution is that is it normally distributed.&lt;/p&gt;
 &lt;h5&gt;Does that distribution hold true for our data?&lt;/h5&gt;
@@ -324,7 +324,7 @@ Standard Deviation for Average Math Score: 36.2873931547
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_42_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_42_1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Ohio is a pretty clear outlier, so I'm going to check the source data to make sure something isn't amiss. The true data says Ohio's average Verbal score is 534 and average Math score is 539. Let's take a look at our data:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;OH&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -417,7 +417,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_50_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_50_1.png" /&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;regplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Verbal&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Average Verbal Score&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Average Math Score&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -429,7 +429,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_51_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_51_1.png" /&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_subplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;111&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# The big subplot&lt;/span&gt;
 &lt;span class="n"&gt;ax1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_subplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;211&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;#numbers are: nrows, ncols, place counting through rows then cols&lt;/span&gt;
@@ -457,7 +457,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_52_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_52_1.png" /&gt;&lt;/p&gt;
 &lt;h5&gt;Are there any interesting relationships to note?&lt;/h5&gt;
 &lt;p&gt;Math and verbal scores appear to be positively correlated. As verbal scores increase, so do math scores.&lt;/p&gt;
 &lt;p&gt;For both math and verbal, it appears that the highest scores are at the lowest rate. Also, as I noted before, there are 2 distinct sets in terms of participation: states where participation is below 40% and states where participation is above 40%, so I separate them.&lt;/p&gt;
@@ -501,7 +501,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_55_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_55_1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Now that I've separated the low participation rate states from the high participation rate states, I notice a clear negatively correlated linear relationship between scores and participation rate for the low participation rate states, but no clear pattern or relationship for score vs. participation rate for high participation rate states.&lt;/p&gt;
 &lt;p&gt;I wanted to find out why there were some states that had very low participation rates, while others had high and why there was a negative trend as participation rate increased. There are some states&lt;/p&gt;
 &lt;h5&gt;Create box plots for each variable.&lt;/h5&gt;
@@ -536,7 +536,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/output_58_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/sat_post/output_58_1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;These box plots help provide a clearer visualization for the range of the distribution of variables. The black line at the very bottom is the minimum, the blue dashed line from the bottom tick to the bottom of the box is the 1st quartile, the bottom of the blue box is the 25th percentile, the red line is the median or 50th percentile, the top of the box is the 75th percentile and the black line at the top is the maximum. The blue box represents the range from the 25th percentile to the 75th percentile, which is also known as the interquartile range or IQR.&lt;/p&gt;
 &lt;p&gt;I put the the verbal and math box plots on the same range so it would be easier to compare the two.&lt;/p&gt;
 &lt;h5&gt;Using Tableau, create a heat map for each variable using a map of the US.&lt;/h5&gt;
@@ -576,7 +576,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 &lt;div class='tableauPlaceholder' id='viz1480790903597' style='position: relative'&gt;&lt;noscript&gt;&lt;a href='#'&gt;&lt;img alt='2001 SAT Average Verbal Score by State ' src='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&amp;#47;1_rss.png' style='border: none' /&gt;&lt;/a&gt;&lt;/noscript&gt;&lt;object class='tableauViz'  style='display:none;'&gt;&lt;param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /&gt; &lt;param name='site_root' value='' /&gt;&lt;param name='name' value='2001SATAverageVerbalScorebyState&amp;#47;Sheet3' /&gt;&lt;param name='tabs' value='no' /&gt;&lt;param name='toolbar' value='yes' /&gt;&lt;param name='static_image' value='https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;20&amp;#47;2001SATAverageVerbalScorebyState&amp;#47;Sheet3&amp;#47;1.png' /&gt; &lt;param name='animate_transition' value='yes' /&gt;&lt;param name='display_static_image' value='yes' /&gt;&lt;param name='display_spinner' value='yes' /&gt;&lt;param name='display_overlay' value='yes' /&gt;&lt;param name='display_count' value='yes' /&gt;&lt;/object&gt;&lt;/div&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;            &lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;                    var divElement = document.getElementById(&amp;#39;viz1480790903597&amp;#39;);                    var vizElement = divElement.getElementsByTagName(&amp;#39;object&amp;#39;)[0];                    vizElement.style.width=&amp;#39;100%&amp;#39;;vizElement.style.height=(divElement.offsetWidth*0.75)+&amp;#39;px&amp;#39;;                    var scriptElement = document.createElement(&amp;#39;script&amp;#39;);                    scriptElement.src = &amp;#39;https://public.tableau.com/javascripts/api/viz_v1.js&amp;#39;;                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                &lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Projects"></category></entry><entry><title>Start Blogging with GitHub Pages and Pelican</title><link href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" rel="alternate"></link><published>2016-11-20T18:45:00-05:00</published><updated>2016-11-20T18:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-11-20:start-blogging-with-github-pages-and-pelican.html</id><summary type="html">&lt;p&gt;For those interested in starting a blog using Github Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Projects"></category></entry><entry><title>Start Blogging with GitHub Pages and Pelican</title><link href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" rel="alternate"></link><published>2016-11-20T18:45:00-05:00</published><updated>2016-11-20T18:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-11-20:start-blogging-with-github-pages-and-pelican.html</id><summary type="html">&lt;p&gt;For those interested in starting a blog using GitHub Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.&lt;/p&gt;
 &lt;p&gt;But first, I want to go over why I wanted to start a blog, and why I decided to use GitHub Pages and Pelican.&lt;/p&gt;
 &lt;p&gt;At one of the first data science meetups I went to, the guest lecturer said something that kind of stuck with me: "The absolute worst way to learn something is to take a class on it. The absolute best way to learn something is to teach a class about it." Now, I don't know if I whole-heartedly agree that the worst way to learn something is to take a class on it, but I definitely do agree with the fact that the best way to learn something is to teach it. Being able to organize your thoughts and explain topics that may be relatively complex to someone who has never had any exposure to the topics before really helps drive down concepts that you may have thought you understood, but didn't truly understand.&lt;/p&gt;
 &lt;p&gt;So, I've decided to start this blog to try to organize my thoughts in a clear and comprehendible manner so that others and my future self can read through and learn something new or review things they already know, but hopefully get a stronger understanding of them.&lt;/p&gt;
