@@ -102,8 +102,14 @@
   </header>
 
   <article class='content'>
-    <h1>Start Blogging with Github Pages and Pelican</h1>
-<p>For those interested in starting a blog using Github Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.</p>
+    <p>For those interested in starting a blog using Github Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.</p>
+<p>But first, I want to go over why I wanted to start a blog, and why I decided to use GitHub Pages and Pelican.</p>
+<p>At one of the first data science meetups I went to, the guest lecturer said something that kind of stuck with me: "The absolute worst way to learn something is to take a class on it. The absolute best way to learn something is to teach a class about it." Now, I don't know if I whole-heartedly agree that the worst way to learn something is to take a class on it, but I definitely do agree with the fact that the best way to learn something is to teach it. Being able to organize your thoughts and explain topics that may be relatively complex to someone who has never had any exposure to the topics before really helps drive down concepts that you may have thought you understood, but didn't truly understand.</p>
+<p>So, I've decided to start this blog to try to organize my thoughts in a clear and comprehendible manner so that others and my future self can read through and learn something new or review things they already know, but hopefully get a stronger understanding of them.</p>
+<p>Today, I'm going to write about how to start a blog. I decided to use Pelican as my static site generator because it's written in Python and this is meant to be a data science blog. I think it's really convenient to use Pelican because it supports the <code>Markdown</code> format, so I can just write posts in Jupyter Notebook that includes code for projects that I decide to share and everything will automatically be formatted properly. It's also easy to generate the website using a simple CLI (command line interface) tool. Finally, a lot of people have already built really cool themes that you can use for your blog, or if you're really ambitious, you can build your own theme.</p>
+<p><a href="http://docs.getpelican.com/en/stable/#">Click here</a> to learn more about pelican and <a href="http://www.pelicanthemes.com">here</a> if you want to take a look at some of the public themes you can base your blog on.</p>
+<p>Next, why use GitHub Pages? Well, using GitHub Pages is really a no-brainer if you're already using GitHub to share your projects and code. It's pretty much a free way to host your website and it's really easy to take projects you already have on GitHub and (using Pelican) turn it into a blog post.</p>
+<p>Setting Pelican up with GitHub Pages is pretty straightforward, and once you're set up, posting new blog posts and sharing projects is a breeze. So, let's go over how to set up your blog.</p>
 <p>Before you get started, you're going to need to download a few packages, so open up Terminal and type in the following commands:</p>
 <div class="highlight"><pre><span></span>pip install pelican
 pip install markdown
@@ -111,7 +117,7 @@ pip install ghp-import
 </pre></div>
 
 
-<p>Next, you're going to want to head on over to your Github profile and create a new repository with the name 'USERNAME.github.io' where USERNAME is your own Github username.</p>
+<p>Next, you're going to want to head on over to your GitHub profile and create a new repository with the name 'USERNAME.github.io' where USERNAME is your own GitHub username.</p>
 <p>Next, you'll want to clone this repository onto your computer. I decided to clone my repository into Home/Sites, but you can clone this repository wherever you want. I assume your root directory is your home folder, so simply typing <code>cd</code> should get you into the home folder, then typing <code>cd Sites/</code> should get you into the Sites folder</p>
 <p>So, type the following commands in Terminal:</p>
 <div class="highlight"><pre><span></span>cd
@@ -127,7 +133,7 @@ pelican-quickstart
 </pre></div>
 
 
-<p>Now, pelican-quickstart will ask you a series of questions to get your site up. Just hitting return without typing anything will assume you want the default setting. I want to highlight that you want your URL prefix to be https://USERNAME.github.io</p>
+<p>Now, pelican-quickstart will ask you a series of questions to get your site up. Just hitting return without typing anything will assume you want the default setting. <strong>I want to highlight that you want your URL prefix to be https://USERNAME.github.io ! It should not start with just http://!</strong></p>
 <div class="highlight"><pre><span></span>&gt; Where do you want to create your new web site? [.] 
 &gt; What will be the title of this web site? YOUR TITLE
 &gt; Who will be the author of this web site? YOUR NAME
@@ -181,7 +187,8 @@ make serve
 </pre></div>
 
 
-<p>Now your website is public and you should be able to view by going to https://USERNAME.github.io</p>
+<p>Now your website is public and you should be able to view by going to https://USERNAME.github.io !</p>
+<p>At this point, I encourage you to look through different themes and personalize your blog a bit. Happy blogging!</p>
   </article>
 
   <div class="divider"><!-- lines divider --></div>
@@ -197,7 +204,8 @@ make serve
 
   <!-- TAGS -->
   <p class="fsize16"> Tags:
-        <a href="/tag/getting-started.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="1 article with this tag"><i class="fa fa-tags"></i> Getting Started</a>
+        <a href="/tag/github-pages.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="1 article with this tag"><i class="fa fa-tags"></i> GitHub Pages</a>
+        <a href="/tag/pelican.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="1 article with this tag"><i class="fa fa-tags"></i> Pelican</a>
   </p>
 
   <hr /><!-- divider -->
@@ -240,9 +248,7 @@ make serve
             <h3>Categories</h3>
 
             <ul>
-               <li><a class="theme_link" href="https://atamby1.github.io/category/about.html"><i class="fa fa-dot-circle-o"></i> About</a>
-              </li>
-              <li><a class="theme_link" href="https://atamby1.github.io/category/getting-started.html"><i class="fa fa-dot-circle-o"></i> Getting Started</a>
+               <li><a class="theme_link" href="https://atamby1.github.io/category/getting-started.html"><i class="fa fa-dot-circle-o"></i> Getting Started</a>
               </li>
             </ul>
 
@@ -256,7 +262,6 @@ make serve
             <!-- Get all of the articles with their dates -->
             <div class="hidden">
                 None
-                None
             </div>
 
             <!-- If the user indicates they prefer a list.-->                <ul class="tree">
@@ -269,10 +274,6 @@ make serve
                                         <li style="display: none;">
                                             <a class="theme_link" href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html">
                                             <small>Sun 20 November 2016</small>Start Blogging with Github Pages and Pelican</a>
-                                        </li>
-                                        <li style="display: none;">
-                                            <a class="theme_link" href="https://atamby1.github.io/my-first-post.html">
-                                            <small>Sun 20 November 2016</small>My First Post</a>
                                         </li>
                                 </ul>
                             </li>

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Avinash's Blog</title><link href="https://atamby1.github.io/" rel="alternate"></link><link href="https://atamby1.github.io/feeds/getting-started.atom.xml" rel="self"></link><id>https://atamby1.github.io/</id><updated>2016-11-20T18:45:00-05:00</updated><entry><title>Start Blogging with Github Pages and Pelican</title><link href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" rel="alternate"></link><published>2016-11-20T18:45:00-05:00</published><updated>2016-11-20T18:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-11-20:start-blogging-with-github-pages-and-pelican.html</id><summary type="html">&lt;h1&gt;Start Blogging with Github Pages and Pelican&lt;/h1&gt;
-&lt;p&gt;For those interested in starting a blog using Github Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Avinash's Blog</title><link href="https://atamby1.github.io/" rel="alternate"></link><link href="https://atamby1.github.io/feeds/getting-started.atom.xml" rel="self"></link><id>https://atamby1.github.io/</id><updated>2016-11-20T18:45:00-05:00</updated><entry><title>Start Blogging with Github Pages and Pelican</title><link href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" rel="alternate"></link><published>2016-11-20T18:45:00-05:00</published><updated>2016-11-20T18:45:00-05:00</updated><author><name>Avinash TAMBY</name></author><id>tag:atamby1.github.io,2016-11-20:start-blogging-with-github-pages-and-pelican.html</id><summary type="html">&lt;p&gt;For those interested in starting a blog using Github Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.&lt;/p&gt;
+&lt;p&gt;But first, I want to go over why I wanted to start a blog, and why I decided to use GitHub Pages and Pelican.&lt;/p&gt;
+&lt;p&gt;At one of the first data science meetups I went to, the guest lecturer said something that kind of stuck with me: "The absolute worst way to learn something is to take a class on it. The absolute best way to learn something is to teach a class about it." Now, I don't know if I whole-heartedly agree that the worst way to learn something is to take a class on it, but I definitely do agree with the fact that the best way to learn something is to teach it. Being able to organize your thoughts and explain topics that may be relatively complex to someone who has never had any exposure to the topics before really helps drive down concepts that you may have thought you understood, but didn't truly understand.&lt;/p&gt;
+&lt;p&gt;So, I've decided to start this blog to try to organize my thoughts in a clear and comprehendible manner so that others and my future self can read through and learn something new or review things they already know, but hopefully get a stronger understanding of them.&lt;/p&gt;
+&lt;p&gt;Today, I'm going to write about how to start a blog. I decided to use Pelican as my static site generator because it's written in Python and this is meant to be a data science blog. I think it's really convenient to use Pelican because it supports the &lt;code&gt;Markdown&lt;/code&gt; format, so I can just write posts in Jupyter Notebook that includes code for projects that I decide to share and everything will automatically be formatted properly. It's also easy to generate the website using a simple CLI (command line interface) tool. Finally, a lot of people have already built really cool themes that you can use for your blog, or if you're really ambitious, you can build your own theme.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/stable/#"&gt;Click here&lt;/a&gt; to learn more about pelican and &lt;a href="http://www.pelicanthemes.com"&gt;here&lt;/a&gt; if you want to take a look at some of the public themes you can base your blog on.&lt;/p&gt;
+&lt;p&gt;Next, why use GitHub Pages? Well, using GitHub Pages is really a no-brainer if you're already using GitHub to share your projects and code. It's pretty much a free way to host your website and it's really easy to take projects you already have on GitHub and (using Pelican) turn it into a blog post.&lt;/p&gt;
+&lt;p&gt;Setting Pelican up with GitHub Pages is pretty straightforward, and once you're set up, posting new blog posts and sharing projects is a breeze. So, let's go over how to set up your blog.&lt;/p&gt;
 &lt;p&gt;Before you get started, you're going to need to download a few packages, so open up Terminal and type in the following commands:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican
 pip install markdown
@@ -8,7 +14,7 @@ pip install ghp-import
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Next, you're going to want to head on over to your Github profile and create a new repository with the name 'USERNAME.github.io' where USERNAME is your own Github username.&lt;/p&gt;
+&lt;p&gt;Next, you're going to want to head on over to your GitHub profile and create a new repository with the name 'USERNAME.github.io' where USERNAME is your own GitHub username.&lt;/p&gt;
 &lt;p&gt;Next, you'll want to clone this repository onto your computer. I decided to clone my repository into Home/Sites, but you can clone this repository wherever you want. I assume your root directory is your home folder, so simply typing &lt;code&gt;cd&lt;/code&gt; should get you into the home folder, then typing &lt;code&gt;cd Sites/&lt;/code&gt; should get you into the Sites folder&lt;/p&gt;
 &lt;p&gt;So, type the following commands in Terminal:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd
@@ -24,7 +30,7 @@ pelican-quickstart
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now, pelican-quickstart will ask you a series of questions to get your site up. Just hitting return without typing anything will assume you want the default setting. I want to highlight that you want your URL prefix to be https://USERNAME.github.io&lt;/p&gt;
+&lt;p&gt;Now, pelican-quickstart will ask you a series of questions to get your site up. Just hitting return without typing anything will assume you want the default setting. &lt;strong&gt;I want to highlight that you want your URL prefix to be https://USERNAME.github.io ! It should not start with just http://!&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; Where do you want to create your new web site? [.] 
 &amp;gt; What will be the title of this web site? YOUR TITLE
 &amp;gt; Who will be the author of this web site? YOUR NAME
@@ -78,4 +84,5 @@ make serve
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now your website is public and you should be able to view by going to https://USERNAME.github.io&lt;/p&gt;</summary><category term="Getting Started"></category></entry></feed>
+&lt;p&gt;Now your website is public and you should be able to view by going to https://USERNAME.github.io !&lt;/p&gt;
+&lt;p&gt;At this point, I encourage you to look through different themes and personalize your blog a bit. Happy blogging!&lt;/p&gt;</summary><category term="Pelican"></category><category term="GitHub Pages"></category></entry></feed>
