@@ -93,119 +93,36 @@
         <div id="blog_main_area" class="left col-md-9">
   <!-- article title -->
   <header>
-      <h1>Start Blogging with GitHub Pages and Pelican</h1>
+      <h1>Why Are There So Many Machine Learning Classifiers?</h1>
     <small class="fsize13">
-            <a href="https://atamby1.github.io/category/getting-started.html" rel="tag tooltip" class="label label-default light" data-placement="right" data-original-title="1 article in this category"><i class="fa fa-dot-circle-o"></i> Getting Started</a>
-      <a href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html#disqus_thread" class="scrollTo label label-default light" data-disqus-identifier="start-blogging-with-github-pages-and-pelican.html"><i class="fa fa-comment-o"></i> ?? Comments</a>
-      <span class="label label-default light">Sun 20 November 2016</span> 
+            <a href="https://atamby1.github.io/category/data-science.html" rel="tag tooltip" class="label label-default light" data-placement="right" data-original-title="2 articles in this category"><i class="fa fa-dot-circle-o"></i> Data Science</a>
+      <a href="https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html#disqus_thread" class="scrollTo label label-default light" data-disqus-identifier="why-are-there-so-many-machine-learning-classifiers.html"><i class="fa fa-comment-o"></i> ?? Comments</a>
+      <span class="label label-default light">Mon 02 January 2017</span> 
     </small>
   </header>
 
   <article class='content'>
-    <p>For those interested in starting a blog using GitHub Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.</p>
-<p>But first, I want to go over why I wanted to start a blog, and why I decided to use GitHub Pages and Pelican.</p>
-<p>At one of the first data science meetups I went to, the guest lecturer said something that kind of stuck with me: "The absolute worst way to learn something is to take a class on it. The absolute best way to learn something is to teach a class about it." Now, I don't know if I whole-heartedly agree that the worst way to learn something is to take a class on it, but I definitely do agree with the fact that the best way to learn something is to teach it. Being able to organize your thoughts and explain topics that may be relatively complex to someone who has never had any exposure to the topics before really helps drive down concepts that you may have thought you understood, but didn't truly understand.</p>
-<p>So, I've decided to start this blog to try to organize my thoughts in a clear and comprehendible manner so that others and my future self can read through and learn something new or review things they already know, but hopefully get a stronger understanding of them.</p>
-<p>Today, I'm going to write about how to start a blog. I decided to use Pelican as my static site generator because it's written in Python and this is meant to be a data science blog. I think it's really convenient to use Pelican because it supports the <code>Markdown</code> format, so I can just write posts in Jupyter Notebook that includes code for projects that I decide to share and everything will automatically be formatted properly. It's also easy to generate the website using a simple CLI (command line interface) tool. Finally, a lot of people have already built really cool themes that you can use for your blog, or if you're really ambitious, you can build your own theme.</p>
-<p><a href="http://docs.getpelican.com/en/stable/#">Click here</a> to learn more about pelican and <a href="http://www.pelicanthemes.com">here</a> if you want to take a look at some of the public themes you can base your blog on.</p>
-<p>Next, why use GitHub Pages? Well, using GitHub Pages is really a no-brainer if you're already using GitHub to share your projects and code. It's pretty much a free way to host your website and it's really easy to take projects you already have on GitHub and (using Pelican) turn it into a blog post.</p>
-<p>Setting Pelican up with GitHub Pages is pretty straightforward, and once you're set up, posting new blog posts and sharing projects is a breeze. So, let's go over how to set up your blog.</p>
-<p>Before you get started, you're going to need to download a few packages, so open up Terminal and type in the following commands:</p>
-<div class="highlight"><pre><span></span>pip install pelican
-pip install markdown
-pip install ghp-import
-</pre></div>
-
-
-<p>Next, you're going to want to head on over to your GitHub profile and create a new repository with the name 'USERNAME.github.io' where USERNAME is your own GitHub username.</p>
-<p>Next, you'll want to clone this repository onto your computer. I decided to clone my repository into Home/Sites, but you can clone this repository wherever you want. I assume your root directory is your home folder, so simply typing <code>cd</code> should get you into the home folder, then typing <code>cd Sites/</code> should get you into the Sites folder</p>
-<p>So, type the following commands in Terminal:</p>
-<div class="highlight"><pre><span></span>cd
-cd Sites/
-git clone git@github.com:USERNAME/USERNAME.github.io.git MyBlog
-</pre></div>
-
-
-<p>You can change <code>MyBlog</code> into whatever you want the name of this folder to be.</p>
-<p>Now that you've cloned your repository, you can cd into MyBlog and run pelican-quickstart to get started.</p>
-<div class="highlight"><pre><span></span>cd MyBlog
-pelican-quickstart
-</pre></div>
-
-
-<p>Now, pelican-quickstart will ask you a series of questions to get your site up. Just hitting return without typing anything will assume you want the default setting. <strong>I want to highlight that you want your URL prefix to be https://USERNAME.github.io ! It should not start with just http://!</strong></p>
-<div class="highlight"><pre><span></span>&gt; Where do you want to create your new web site? [.] 
-&gt; What will be the title of this web site? YOUR TITLE
-&gt; Who will be the author of this web site? YOUR NAME
-&gt; What will be the default language of this web site? [en] 
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) Y
-&gt; What is your URL prefix? (see above example; no trailing slash) https://USERNAME.github.io
-&gt; Do you want to enable article pagination? (Y/n) Y
-&gt; How many articles per page do you want? [10] 
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y
-&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) Y
-&gt; Do you want to upload your website using FTP? (y/N) N
-&gt; Do you want to upload your website using SSH? (y/N) N
-&gt; Do you want to upload your website using Dropbox? (y/N) N
-&gt; Do you want to upload your website using S3? (y/N) N
-&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N
-&gt; Do you want to upload your website using GitHub Pages? (y/N) Y
-&gt; Is this your personal page (username.github.io)? (y/N) Y
-Done. Your new project is available at /path/to/website
-</pre></div>
-
-
-<p>Now, you're ready to create your first sample blog post!</p>
-<p>Just to test it out, I recommend you just make quick 'Hello World!' post just to make sure everything works properly. Then, you can delete it and make a real post once you have everything set up properly.</p>
-<p>After pelican-quickstart finishes, you should have new folders and files your MyBlog folder. Go into the content folder and create a Markdown file by typing the following in Terminal:</p>
-<div class="highlight"><pre><span></span>cd content
-touch first-post.md
-open first-post.md
-</pre></div>
-
-
-<p>Now, an empty file will pop in a text editor where you can write your blog post.</p>
-<p>Just to make a very quick post, I suggest you type in the following in your first-post.md file:</p>
-<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="n">First</span> <span class="n">Post</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">20</span> <span class="mi">19</span><span class="o">:</span><span class="mi">00</span>
-<span class="n">Category</span><span class="o">:</span> <span class="n">Example</span>
-
-<span class="n">Hello</span> <span class="n">world</span><span class="o">.</span>
-</pre></div>
-
-
-<p>Now you can go ahead and save that file and exit out of it. Next, in the Terminal type the following:</p>
-<div class="highlight"><pre><span></span>make html
-make serve
-</pre></div>
-
-
-<p>This will serve a local version of what your site will look like so that you can preview it before publishing it to the public. It will be visible at localhost:8000 by default. You can view your website here: http://localhost:8000/</p>
-<p>If everything looks good on your website, go back to Terminal and press control + C (aka ^c) to stop the local server. Now you're ready to publish!</p>
-<p>Type the following into Terminal:</p>
-<div class="highlight"><pre><span></span>make github
-</pre></div>
-
-
-<p>Now your website is public and you should be able to view by going to https://USERNAME.github.io !</p>
-<p>At this point, I encourage you to look through different themes and personalize your blog a bit. Happy blogging!</p>
+    <p>I'm sure that at some point, most data scientists must ask the question: Why are there so many classifiers? There's k-Nearest Neighbors, Logistic Regression, SVMs, Decision Trees, Naive Bayes, Random Forests, Neural Networks, and the list goes on! But do we really need all of these classifiers?</p>
+<p>Well, I'd say it probably <em>isn't</em> really necessary to have all of these classifiers, but they are nice to have. There are some algorithms which arguably usually don't perform as well others for many datasets. These usually include KNN and Decision Trees. These are usually considered "weak learners", but they are useful because they are easily interpretable and they can help you make sense of the data and maybe see some relationships that are not as obvious when using other classifiers.</p>
+<p>In data science, there appear to be a lot of tradeoffs and it is up to the data scientist to minimize the losses due to these tradeoffs and balancing these tradeoffs are not an exact science. For the bias-variance tradeoff, it's difficult -- near impossible -- to find the exact point which minimizes both error due to variance and error due to bias without wasting computational resources. The best a data scientist can do is <em>try</em> to minimize both types of error.</p>
+<p>Returning to the classifiers question, another important tradeoff in data science is complexity vs. interpretability. Very complex models may be very accurate and classify things incredibly well, but those models usually come at the cost of low interpretability. The models become black boxes and we get excited about our high accuracy, but we don't actually know how the model actually classifies observations. It also becomes difficult to explain how the model works and it's difficult to just tell someone to trust your model without them knowing how it works. KNN and DTs are usually easily interpetable, but they are also not very complex models. There are research papers that purport that Random Forests and Gradient Boosting Trees are the <em>best</em> models (http://www.jmlr.org/papers/volume15/delgado14a/delgado14a.pdf), and there are other papers that refute this claim (http://jmlr.org/papers/volume17/15-374/15-374.pdf).</p>
+<p>When approaching a data science classification problem, I'd suggest trying a variety of classifiers then seeing which ones work best. The popular ones right now seem to be Random Forests and Gradient Boosting Trees, but I'm sure that data scientists change their opinions over time and develop new algorithms with high predictive power <em>and</em> high interpretability. A lot of research is going into further developing neural networks, especially in the field of artificial intelligence, but we'll see which ones come out on top.</p>
   </article>
 
   <div class="divider"><!-- lines divider --></div>
 
   <!-- SOCIAL -->
 <p class="socials">
-    <a href="http://www.facebook.com/sharer/sharer.php?u=https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" class="rounded-icon social fa fa-facebook" target="_blank" title="Share on Facebook"><!-- facebook --></a>
-    <a href="http://twitter.com/home?status=https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" class="rounded-icon social fa fa-twitter" target="_blank" title="Share on Twitter"><!-- twitter --></a>
-    <a href="https://plus.google.com/share?url=https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" class="rounded-icon social fa fa-google-plus" target="_blank" title="Share on Google+"><!-- google plus --></a>
-    <a href="http://pinterest.com/pin/create/link/?url==https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html" class="rounded-icon social fa fa-pinterest"  target="_blank" title="Share on Pinterest"><!-- pinterest --></a>
-    <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html&title=Start Blogging with GitHub Pages and Pelican&summary=&source=" class="rounded-icon social fa fa-linkedin" target="_blank" title="Share on Linkedin"><!-- linkedin --></a>
+    <a href="http://www.facebook.com/sharer/sharer.php?u=https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html" class="rounded-icon social fa fa-facebook" target="_blank" title="Share on Facebook"><!-- facebook --></a>
+    <a href="http://twitter.com/home?status=https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html" class="rounded-icon social fa fa-twitter" target="_blank" title="Share on Twitter"><!-- twitter --></a>
+    <a href="https://plus.google.com/share?url=https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html" class="rounded-icon social fa fa-google-plus" target="_blank" title="Share on Google+"><!-- google plus --></a>
+    <a href="http://pinterest.com/pin/create/link/?url==https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html" class="rounded-icon social fa fa-pinterest"  target="_blank" title="Share on Pinterest"><!-- pinterest --></a>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html&title=Why Are There So Many Machine Learning Classifiers?&summary=&source=" class="rounded-icon social fa fa-linkedin" target="_blank" title="Share on Linkedin"><!-- linkedin --></a>
 </p>  
 
   <!-- TAGS -->
   <p class="fsize16"> Tags:
-        <a href="/tag/pelican.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="1 article with this tag"><i class="fa fa-tags"></i> Pelican</a>
-        <a href="/tag/github-pages.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="1 article with this tag"><i class="fa fa-tags"></i> GitHub Pages</a>
+        <a href="/tag/data-science.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="2 articles with this tag"><i class="fa fa-tags"></i> Data Science</a>
   </p>
 
   <hr /><!-- divider -->
