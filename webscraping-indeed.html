@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Avinash's Blog - </title>
+    <meta name="description" content="" />
+    <meta name="Author" content="Ken M. Lai(networktsukkomime.me)" />
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://stepofweb.gweb.io/.templates/IsisOne/HTML/assets/plugins/lt-ie9/html5.js"></script>
+    <script type="text/javascript" src="http://stepofweb.gweb.io/.templates/IsisOne/HTML/assets/plugins/lt-ie9/respond.min.js"></script>
+    <script type="text/javascript" src="http://stepofweb.gweb.io/.templates/IsisOne/HTML/assets/plugins/lt-ie9/excanvas.compiled.js"></script>
+    <![endif]-->
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Dosis:300,400" rel="stylesheet" type="text/css" />
+
+
+    <!-- CORE CSS FRAMEWORK -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- CSS TEMPLATE -->
+    <link href="https://atamby1.github.io/theme/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="https://atamby1.github.io/theme/css/framework.css" rel="stylesheet" type="text/css" />
+    <link href="https://atamby1.github.io/theme/css/typography.css" rel="stylesheet" type="text/css" />
+    <link href="https://atamby1.github.io/theme/css/layout.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://atamby1.github.io/theme/css/blog.css" rel="stylesheet" type="text/css" />
+
+    <!-- ICONS -->
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+    <!-- Morenizr -->
+    <script type="text/javascript" src="https://atamby1.github.io/theme/js/modernizr.min.js"></script>
+
+    <!-- google authorship -->
+</head>
+<body>
+
+<!-- Main Nav -->
+<header id="header" style="margin-top:0">
+
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenu" class="fa fa-bars" type="button" data-toggle="collapse" data-target=".navbar-collapse"></button>
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand scrollTo" href="#home">
+          <img src="images/AI.png" alt="" width="50" height="50" />
+          <span class="hidden-xs">Avinash&#39;s Blog</span>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <!-- Fullscreen Button - Unavailable for IE -->
+        <a href="#" class="btn-fullscreen"><i class="fa fa-external-link"></i></a>
+
+        <ul class="nav navbar-nav navbar-right">
+          <!-- If the user wants to make articles the home page then remove blog link, and make about and work links point to old home page. -->
+            <li><a href="https://atamby1.github.io/index.html#home">Home</a></li>
+            <li><a href="https://atamby1.github.io/index.html#about">About</a></li>
+            <li><a href="https://atamby1.github.io/blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+
+    </div>
+  </nav>
+</header>
+<!-- /Main Nav -->  <section id="blog">
+    <article class="container">
+
+      <div class="row">
+        <div id="blog_main_area" class="left col-md-9">
+  <!-- article title -->
+  <header>
+      <h1>Webscraping Indeed</h1>
+    <small class="fsize13">
+            <a href="https://atamby1.github.io/category/data-science.html" rel="tag tooltip" class="label label-default light" data-placement="right" data-original-title="7 articles in this category"><i class="fa fa-dot-circle-o"></i> Data Science</a>
+      <a href="https://atamby1.github.io/webscraping-indeed.html#disqus_thread" class="scrollTo label label-default light" data-disqus-identifier="webscraping-indeed.html"><i class="fa fa-comment-o"></i> ?? Comments</a>
+      <span class="label label-default light">Fri 06 January 2017</span> 
+    </small>
+  </header>
+
+  <article class='content'>
+    <p>In this project, I scrape Indeed.com for data scientist salaries in cities across America and try to figure out whether or not a certain job post will pay above the median data scientist salary.</p>
+<div class="highlight"><pre><span></span><span class="c1"># import everything I need</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Create list of cities I want to search Data Science jobs in in the format of what it looks like in the URL</span>
+
+<span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;New+York,+NY&#39;</span><span class="p">,</span> <span class="s1">&#39;Los+Angeles,+CA&#39;</span><span class="p">,</span> <span class="s1">&#39;Chicago,+IL&#39;</span><span class="p">,</span> <span class="s1">&#39;Houston,+TX&#39;</span><span class="p">,</span> <span class="s1">&#39;Philadelphia,+PA&#39;</span><span class="p">,</span> <span class="s1">&#39;Phoenix,+AZ&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;San+Antonio,+TX&#39;</span><span class="p">,</span> <span class="s1">&#39;San+Diego,+CA&#39;</span><span class="p">,</span> <span class="s1">&#39;Dallas,+TX&#39;</span><span class="p">,</span> <span class="s1">&#39;San+Jose,+CA&#39;</span><span class="p">,</span> <span class="s1">&#39;Austin,+TX&#39;</span><span class="p">,</span> <span class="s1">&#39;Jacksonville,+FL&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Steamtteaman+Francisco,+CA&#39;</span><span class="p">,</span> <span class="s1">&#39;Indianapolis,+IN&#39;</span><span class="p">,</span> <span class="s1">&#39;Columbus,+OH&#39;</span><span class="p">,</span> <span class="s1">&#39;Fort+Worth,+TX&#39;</span><span class="p">,</span> <span class="s1">&#39;Charlotte,+NC&#39;</span><span class="p">,</span> <span class="s1">&#39;Seattle,+WA&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Denver,+CO&#39;</span><span class="p">,</span> <span class="s1">&#39;El+Paso,+TX&#39;</span><span class="p">,</span> <span class="s1">&#39;Detroit,+MI&#39;</span><span class="p">,</span> <span class="s1">&#39;Washington,+DC&#39;</span><span class="p">,</span> <span class="s1">&#39;Boston,+MA&#39;</span><span class="p">,</span> <span class="s1">&#39;Memphis,+TN&#39;</span><span class="p">,</span> <span class="s1">&#39;Nashville,+TN&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;Portland,+OR&#39;</span><span class="p">,</span> <span class="s1">&#39;Oklahoma+City,+OK&#39;</span><span class="p">,</span> <span class="s1">&#39;Baltimore,+MD&#39;</span><span class="p">,</span> <span class="s1">&#39;Atlanta,+GA&#39;</span><span class="p">,</span> <span class="s1">&#39;Pittsburgh,+PA&#39;</span><span class="p">,</span> <span class="s1">&#39;Palo+Alto,+CA&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Mountain+View,+CA&#39;</span><span class="p">,</span> <span class="s1">&#39;Cupertino,+CA&#39;</span><span class="p">,</span> <span class="s1">&#39;Cambridge,+MA&#39;</span><span class="p">,</span> <span class="s1">&#39;Miami,+FL&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Below, I use BeautifulSoup to scrape Indeed. I take the job title, company name, location, summary and salary (if there is one listed). I'm going to find the median of all the jobs that <em>do</em> have a listed salary and then build a machine learning classifier to try to predict whether or not all of the <em>other</em> job posts will pay above the median.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Scrape</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;company&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">,</span><span class="s2">&quot;summary&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">])</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="s2">&quot;https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=&quot;</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="s2">&quot;&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch&quot;</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">cities</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="n">p2</span> 
+    <span class="n">html</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">,</span> <span class="n">from_encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">url</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">comp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">loc_code</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sal</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">desc</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39; row result&#39;</span><span class="p">}):</span>
+        <span class="n">title</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;h2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">comp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;company&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">loc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;location&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">loc_code</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;nobr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">sal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">desc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;summary&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">comp</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">comp</span><span class="p">)</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">loc</span><span class="p">)</span>
+    <span class="n">desc</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">desc</span><span class="p">)</span>
+
+    <span class="n">jobs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;company&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="s2">&quot;location_code&quot;</span><span class="p">,</span> <span class="s2">&quot;summary&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">company</span> <span class="o">=</span> <span class="n">comp</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">sal</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">loc</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">location_code</span> <span class="o">=</span> <span class="n">loc_code</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">desc</span>
+
+    <span class="c1"># Append df of jobs in each city to an overall all jobs df</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=New+York,+NY&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Los+Angeles,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Chicago,+IL&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Houston,+TX&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Philadelphia,+PA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Phoenix,+AZ&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=San+Antonio,+TX&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=San+Diego,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Dallas,+TX&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=San+Jose,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Austin,+TX&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Jacksonville,+FL&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Steamtteaman+Francisco,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Indianapolis,+IN&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Columbus,+OH&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Fort+Worth,+TX&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Charlotte,+NC&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Seattle,+WA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Denver,+CO&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=El+Paso,+TX&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Detroit,+MI&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Washington,+DC&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Boston,+MA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Memphis,+TN&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Nashville,+TN&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Portland,+OR&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Oklahoma+City,+OK&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Baltimore,+MD&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Atlanta,+GA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Pittsburgh,+PA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Palo+Alto,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Mountain+View,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Cupertino,+CA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Cambridge,+MA&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+https://www.indeed.com/jobs?as_and=data+scientist&amp;as_phr=&amp;as_any=&amp;as_not=&amp;as_ttl=&amp;as_cmp=&amp;jt=fulltime&amp;st=&amp;salary=$70,000%2B&amp;radius=25&amp;l=Miami,+FL&amp;fromage=any&amp;limit=250&amp;sort=&amp;psf=advsrch
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>(2437, 6)
+</pre></div>
+
+
+<p>Cool, I was able to get 2,437 job posts. Now let's see how many of them have salaries missing.</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>company             0
+location            0
+location_code       0
+salary           2316
+summary             0
+title               0
+dtype: int64
+</pre></div>
+
+
+<p>Ooh, 2,316 missing salaries.</p>
+<div class="highlight"><pre><span></span><span class="n">notnull</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+</pre></div>
+
+
+<p>I'm going to clean up the salary figure and only take the lower end of the range.</p>
+<div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">notnull</span><span class="p">[(</span><span class="o">~</span><span class="n">notnull</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">notnull</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">))]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; a year&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/pandas/core/generic.py:2701: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self[name] = value
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>(107, 6)
+</pre></div>
+
+
+<p>Yeah, again. I only have 107 salaries for 2400 job posts. But, we shall continue. Let's find the median. And create a binary target: 1 if above, 0 if equal or below the median.</p>
+<div class="highlight"><pre><span></span><span class="n">med</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">salary</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">salary</span> <span class="o">&gt;</span> <span class="n">med</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  if __name__ == &#39;__main__&#39;:
+</pre></div>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>company</th>
+      <th>location</th>
+      <th>location_code</th>
+      <th>salary</th>
+      <th>summary</th>
+      <th>title</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Oliver James Associates</td>
+      <td>New York, NY</td>
+      <td>0.0</td>
+      <td>90000.0</td>
+      <td>Identifies and develops data sources to solve ...</td>
+      <td>Data Scientist</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Venturi Ltd</td>
+      <td>New York, NY</td>
+      <td>0.0</td>
+      <td>200000.0</td>
+      <td>Data Scientist, FinTech, Python, R, Machine Le...</td>
+      <td>Data Scientist ( FinTech / Python / R / Machin...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Selby Jennings</td>
+      <td>New York, NY 10167 (Midtown area)</td>
+      <td>0.0</td>
+      <td>150000.0</td>
+      <td>Mentored junior data scientists. Data Scientis...</td>
+      <td>Data Scientist</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Selby Jennings</td>
+      <td>New York, NY 10167 (Midtown area)</td>
+      <td>0.0</td>
+      <td>160000.0</td>
+      <td>Data Scientist | New York, NY. A pioneering In...</td>
+      <td>Data Scientist | Investment Research</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>Beeswax</td>
+      <td>New York, NY</td>
+      <td>0.0</td>
+      <td>130000.0</td>
+      <td>A minimum of 5 years experience in Machine lea...</td>
+      <td>Director / VP Data Science</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>I'm going to save this data to a csv.</p>
+<div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;df2.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">jobs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;df2.csv&#39;</span><span class="p">)</span>
+<span class="n">jobs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>company</th>
+      <th>location</th>
+      <th>location_code</th>
+      <th>salary</th>
+      <th>summary</th>
+      <th>title</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Oliver James Associates</td>
+      <td>New York, NY</td>
+      <td>0.0</td>
+      <td>90000.0</td>
+      <td>Identifies and develops data sources to solve ...</td>
+      <td>Data Scientist</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22</td>
+      <td>Venturi Ltd</td>
+      <td>New York, NY</td>
+      <td>0.0</td>
+      <td>200000.0</td>
+      <td>Data Scientist, FinTech, Python, R, Machine Le...</td>
+      <td>Data Scientist ( FinTech / Python / R / Machin...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>36</td>
+      <td>Selby Jennings</td>
+      <td>New York, NY 10167 (Midtown area)</td>
+      <td>0.0</td>
+      <td>150000.0</td>
+      <td>Mentored junior data scientists. Data Scientis...</td>
+      <td>Data Scientist</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Selby Jennings</td>
+      <td>New York, NY 10167 (Midtown area)</td>
+      <td>0.0</td>
+      <td>160000.0</td>
+      <td>Data Scientist | New York, NY. A pioneering In...</td>
+      <td>Data Scientist | Investment Research</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>65</td>
+      <td>Beeswax</td>
+      <td>New York, NY</td>
+      <td>0.0</td>
+      <td>130000.0</td>
+      <td>A minimum of 5 years experience in Machine lea...</td>
+      <td>Director / VP Data Science</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>I'm just going to take a minute to step back and remember something regarding the baseline accuracy.
+The baseline accuracy is 50% because we are basing the classification on the median. Thus, by definition, 50% of the data is 1 and 50% is 0. Thus, if we classified everything as 1 or everything as 0, we would have an accuracy of 50%.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">classifier</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="p">):</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+        <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">jobs</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="s1">&#39;company&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">jobs</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">classifier</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>0.67636363636363628
+</pre></div>
+
+
+<p>I run my classifier (in the case above, a Random Forest) 50x to adjust for fluctuations in accuracy, and I get about 67% accuracy. That's ok, but I can maybe do better. I'm going to some feature engineering and find more senior-level posts (if the job title has some senior-level word like lead or principal in it).</p>
+<div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Chief&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Manager&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Senior&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Director&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Sr&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Lead&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Principal&#39;</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+        <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;senior&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  if __name__ == &#39;__main__&#39;:
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/pandas/core/indexing.py:132: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._setitem_with_indexer(indexer, value)
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:14: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:11: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:17: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:20: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:8: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+/Users/avinashtamby/anaconda/envs/py27/lib/python2.7/site-packages/ipykernel/__main__.py:23: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;df2.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;df2.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">jobs</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="s1">&#39;company&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">classifier</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>0.68272727272727263
+</pre></div>
+
+
+<p>This adds some value, but the accuracy still isn't great.</p>
+<div class="highlight"><pre><span></span><span class="n">tvec</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<span class="n">tvec</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">jobs</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+<span class="n">tvec</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tvec</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">jobs</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">tvec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+
+<span class="n">classifier</span><span class="p">(</span><span class="n">tvec</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>0.69636363636363641
+</pre></div>
+
+
+<p>Just barely better, but I'll take it.</p>
+<div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">tvec</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+
+<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+
+<span class="n">imp</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;importance&#39;</span><span class="p">])</span>
+<span class="n">imp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">imp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;importance&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>0.730909090909
+               importance
+location_code    0.052979
+team             0.042358
+analytics        0.032552
+scientists       0.031191
+data             0.030282
+</pre></div>
+
+
+<p>The words and features above have the most predictive value when classifying jobs at above or below the median. Location makes sense, I imagine more expensive cities pay more. It's weird that 'data' is in there as these should all be data science jobs. But generally, it seems that quantitative aspects like 'analytics' and 'scientists' are pretty predictive.</p>
+<p>Next, I take a look at the confusion matrix, precision and recall.</p>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">[[11  0]</span>
+ <span class="k">[ 2  9]]</span>
+             <span class="err">precision</span>    <span class="err">recall</span>  <span class="err">f1-score</span>   <span class="err">support</span>
+
+          <span class="err">0</span>       <span class="err">0.85</span>      <span class="err">1.00</span>      <span class="err">0.92</span>        <span class="err">11</span>
+          <span class="err">1</span>       <span class="err">1.00</span>      <span class="err">0.82</span>      <span class="err">0.90</span>        <span class="err">11</span>
+
+<span class="err">avg</span> <span class="err">/</span> <span class="err">total</span>       <span class="err">0.92</span>      <span class="err">0.91</span>      <span class="err">0.91</span>        <span class="err">22</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
+
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+
+<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+
+<span class="n">imp</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;importance&#39;</span><span class="p">])</span>
+<span class="n">imp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">imp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;importance&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>0.675454545455
+            importance
+learning      0.076278
+processing    0.070643
+analytics     0.057618
+data          0.054082
+developer     0.049816
+</pre></div>
+
+
+<p>So, although running a GB classifier doesn't perform as well as the other classifiers I've tried, I think the word importances are pretty key here. 'Learning' was the most important feature, so I imagine employers really value people who are willing to learn.</p>
+  </article>
+
+  <div class="divider"><!-- lines divider --></div>
+
+  <!-- SOCIAL -->
+<p class="socials">
+    <a href="http://www.facebook.com/sharer/sharer.php?u=https://atamby1.github.io/webscraping-indeed.html" class="rounded-icon social fa fa-facebook" target="_blank" title="Share on Facebook"><!-- facebook --></a>
+    <a href="http://twitter.com/home?status=https://atamby1.github.io/webscraping-indeed.html" class="rounded-icon social fa fa-twitter" target="_blank" title="Share on Twitter"><!-- twitter --></a>
+    <a href="https://plus.google.com/share?url=https://atamby1.github.io/webscraping-indeed.html" class="rounded-icon social fa fa-google-plus" target="_blank" title="Share on Google+"><!-- google plus --></a>
+    <a href="http://pinterest.com/pin/create/link/?url==https://atamby1.github.io/webscraping-indeed.html" class="rounded-icon social fa fa-pinterest"  target="_blank" title="Share on Pinterest"><!-- pinterest --></a>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://atamby1.github.io/webscraping-indeed.html&title=Webscraping Indeed&summary=&source=" class="rounded-icon social fa fa-linkedin" target="_blank" title="Share on Linkedin"><!-- linkedin --></a>
+</p>  
+
+  <!-- TAGS -->
+  <p class="fsize16"> Tags:
+        <a href="/tag/data-science.html" rel="tooltip" class="label label-default light" data-placement="right" data-original-title="5 articles with this tag"><i class="fa fa-tags"></i> Data Science</a>
+  </p>
+
+  <hr /><!-- divider -->
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="right col-md-3">
+          <!-- recent work -->
+          <!-- <div class="widget">
+
+                      <h3>Recent Work</h3>
+
+                      <a class="popup-image thumb" href="assets/images/preview/slider/1.jpg">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="popup-video thumb" href="http://www.youtube.com/watch?v=kh29_SERH0Y?rel=0">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="popup-video thumb" href="http://vimeo.com/23630702">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+                      </a>
+
+                      <a class="external ajax-project thumb" href="project-external-1.html">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="external ajax-project thumb" href="project-external-2.html">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />
+                      </a>
+                      <a class="external ajax-project thumb" href="project-external-3.html">
+                          <img src="https://atamby1.github.io/theme/img/1x1.png" class="ajax-project img-responsive" data-src="holder.js/85x85/#676767:#555555/auto/" alt="img" />
+                      </a>
+
+                      <div class="clearfix"></div>
+                  </div> -->
+
+          <!-- categories -->
+          <div class="widget">
+
+            <h3>Categories</h3>
+
+            <ul>
+               <li><a class="theme_link" href="https://atamby1.github.io/category/data-science.html"><i class="fa fa-dot-circle-o"></i> Data Science</a>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Archives -->
+          <div class="widget">
+
+            <h3>Archives</h3>
+
+            <!-- Get all of the articles with their dates -->
+            <div class="hidden">
+                None
+                None
+                None
+                None
+                None
+                None
+                None
+            </div>
+
+            <!-- If the user indicates they prefer a list.-->                <ul class="tree">
+                    <li>
+                        <span><i class="fa fa-minus-square-o"></i>2017</span>
+                        <ul>
+                            <li>
+                                <span><i class="fa fa-plus-square-o"></i>12</span>
+                                <ul>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/why-are-there-so-many-machine-learning-classifiers.html">
+                                            <small>Fri 22 December 2017</small>Why Are There So Many Machine Learning Classifiers?</a>
+                                        </li>
+                                </ul>
+                                <span><i class="fa fa-plus-square-o"></i>01</span>
+                                <ul>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/principal-component-analysis.html">
+                                            <small>Fri 13 January 2017</small>Principal Component Analysis</a>
+                                        </li>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/webscraping-indeed.html">
+                                            <small>Fri 06 January 2017</small>Webscraping Indeed</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        </ul>                        <span><i class="fa fa-minus-square-o"></i>2016</span>
+                        <ul>
+                            <li>
+                                <span><i class="fa fa-plus-square-o"></i>12</span>
+                                <ul>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/iowa-liquor-project.html">
+                                            <small>Fri 16 December 2016</small>Iowa Liquor Project</a>
+                                        </li>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/data-science-workflow.html">
+                                            <small>Fri 09 December 2016</small>Data Science Workflow</a>
+                                        </li>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/analyzing-sat-scores-by-state.html">
+                                            <small>Fri 02 December 2016</small>Analyzing SAT Scores by State</a>
+                                        </li>
+                                </ul>
+                                <span><i class="fa fa-plus-square-o"></i>11</span>
+                                <ul>
+                                        <li style="display: none;">
+                                            <a class="theme_link" href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html">
+                                            <small>Fri 18 November 2016</small>Start Blogging with GitHub Pages and Pelican</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        </ul></li>
+                </ul></div>
+
+        </div>
+        <!-- /SIDEBAR -->
+
+      </div>
+
+    </article>
+  </section>
+  <!-- /BLOG -->
+
+<!-- FOOTER -->
+<footer>
+
+  <!-- SCROLL TO TOP -->
+  <a href="#toTop" class="fa fa-arrow-up toTop"></a>
+
+  <div class="container">
+
+    <div class="row">
+
+        <div class="col-md-6 text-left">
+
+            <br/>Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org/">Python</a>.
+
+            <br/>Theme by <a href="https://github.com/KenMercusLai/BT3-Flat">Ken Marcus Lai</a>
+
+             <br/>Copyright &copy; 2016 Avinash TAMBY All Rights Reserved.
+
+        </div>
+
+        <div class="col-md-6 text-right">
+              <a href="https://github.com/atamby1" class="social fa fa-github" target="_blank"></a>
+              <a href="https://www.linkedin.com/in/avinashtamby" class="social fa fa-linkedin" target="_blank"></a>
+              <a href="mailto:atamby1@gmail.com" class="social fa fa-envelope" target="_blank"></a>
+
+            <br/>Thank you <a href="http://motherboard.vice.com/read/the-dominant-life-form-in-the-cosmos-is-probably-superintelligent-robots">Motherboard</a> for the beautiful background image.
+        </div>
+
+    </div>
+
+  </div>
+</footer>
+<!-- /FOOTER -->
+
+
+
+<!-- CORE FILES -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.isotope.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/masonry.js"></script>
+
+<!-- PLUGINS -->
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.fitvids.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.appear.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.superslides.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.countTo.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/holder.js"></script>
+<!-- delete on production -->
+
+<!-- js scripts -->
+<script async type="text/javascript" src="https://atamby1.github.io/theme/js/scripts.js"></script>
+
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/ImageAutoResize.js"></script>
+<script type="text/javascript" src="https://atamby1.github.io/theme/js/application.js"></script>
+
+
+
+
+
+</body>
+
+</html>
