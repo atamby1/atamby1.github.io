@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet/less" type="text/css" href="https://atamby1.github.io/theme/stylesheet/style.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://atamby1.github.io/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://atamby1.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://atamby1.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Avinash's Blog Atom">
+
+
+    <link rel="shortcut icon" href="images/A.png" type="image/x-icon">
+    <link rel="icon" href="images/A.png" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="author" content="Avinash TAMBY" />
+    <meta name="description" content="Avinash TAMBY's Thoughts and Writings" />
+<meta property="og:site_name" content="Avinash's Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Avinash's Blog"/>
+<meta property="og:description" content="Avinash TAMBY's Thoughts and Writings"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://atamby1.github.io"/>
+<meta property="og:image" content="images/Avinash.jpg">
+
+  <title>Avinash's Blog &ndash;     Posts by Avinash TAMBY
+:</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://atamby1.github.io">
+        <img src="images/Avinash.jpg" alt="Avinash TAMBY" title="Avinash TAMBY">
+      </a>
+      <h1><a href="https://atamby1.github.io">Avinash TAMBY</a></h1>
+
+<p>Data Scientist</p>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/atamby1" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/avinashtamby" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-envelope" href="mailto:atamby1@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://atamby1.github.io">    Home
+</a>
+
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://atamby1.github.io/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+
+
+<article>
+  <header>
+    <h2><a href="https://atamby1.github.io/analyzing-sat-scores-by-state.html#analyzing-sat-scores-by-state">Analyzing SAT Scores by State</a></h2>
+    <p>
+          Posted on Fri 02 December 2016 in <a href="https://atamby1.github.io/category/data-science.html">Data Science</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://atamby1.github.io/tag/projects.html">Projects</a>
+    </p>
+  </header>
+  <div>
+      <h4>Preliminary Information</h4>
+<p>In this project, I take a look at SAT score averages of college-bound seniors and percentage of graduates taking SAT, by state or jurisdiction for the year 2000-2001. The data is taken from the <a href="https://nces.ed.gov/programs/digest/d07/tables/dt07_137.asp">National Center for Education Statistics</a>.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span> <span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/sat_scores.csv&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>  State  Rate  Verbal  Math
+0    CT    82     509   510
+1    NJ    81     499   513
+2    MA    79     511   515
+3    NY    77     495   505
+4    NH    72     520   516
+   State  Rate  Verbal  Math
+47    IA     5     593   603
+48    SD     4     577   582
+49    ND     4     592   599
+50    MS     4     566   551
+51   All    45     506   514
+(52, 4)
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;Average Verbal score across all ...</span></pre></div>
+      <br>
+      <a class="btn" href="https://atamby1.github.io/analyzing-sat-scores-by-state.html#analyzing-sat-scores-by-state">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html#start-blogging-with-github-pages-and-pelican">Start Blogging with GitHub Pages and Pelican</a></h2>
+    <p>
+          Posted on Fri 18 November 2016 in <a href="https://atamby1.github.io/category/data-science.html">Data Science</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://atamby1.github.io/tag/pelican.html">Pelican</a>,              <a href="https://atamby1.github.io/tag/github-pages.html">GitHub Pages</a>
+    </p>
+  </header>
+  <div>
+      <p>For those interested in starting a blog using GitHub Pages and Pelican, here's a brief step-by-step guide on how to get started using a Mac.</p>
+<p>But first, I want to go over why I wanted to start a blog, and why I decided to use GitHub Pages and Pelican.</p>
+<p>At one of the first data science meetups I went to, the guest lecturer said something that kind of stuck with me: "The absolute worst way to learn something is to take a class on it. The absolute best way to learn something is to teach a class about it." Now, I don't know if I whole-heartedly agree that the worst way to learn something is to take a class on it, but I definitely do agree with the fact that the best way to learn something is to teach it. Being able to organize your thoughts and explain ...</p>
+      <br>
+      <a class="btn" href="https://atamby1.github.io/start-blogging-with-github-pages-and-pelican.html#start-blogging-with-github-pages-and-pelican">    Continue reading
+</a>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn float-right" href="https://atamby1.github.io/author/avinash-tamby.html">
+          Newer Posts
+ <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+    <footer>
+<p>
+  &copy; Avinash TAMBY 2017 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+<!-- StatusCake -->
+<a href="https://www.statuscake.com" title="Avinash's Blog Uptime">
+  <img src="https://www.statuscake.com/App/button/index.php?Track=test-test&amp;Days=7&amp;Design=" alt="Avinash's Blog Uptime"/>
+</a>
+
+<script type="text/javascript">var SC_RumID = 1234;</script>
+<script type="text/javascript" async src="https://www.statuscake.com/App/RUM/embed.js"></script>
+<!-- End StatusCake --></p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Avinash's Blog ",
+  "url" : "https://atamby1.github.io",
+  "image": "images/Avinash.jpg",
+  "description": "Avinash TAMBY's Thoughts and Writings"
+}
+</script>
+</body>
+</html>
