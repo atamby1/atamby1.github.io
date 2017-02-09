@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet/less" type="text/css" href="https://atamby1.github.io/theme/stylesheet/style.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://atamby1.github.io/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://atamby1.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://atamby1.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Avinash's Blog Atom">
+
+
+    <link rel="shortcut icon" href="images/A.png" type="image/x-icon">
+    <link rel="icon" href="images/A.png" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Avinash TAMBY" />
+<meta name="description" content="Everyone who uses Python for data science and machine learning probably uses scikit-learn for model building. Scikit-learn is an open-source Python library which features many of the common regression, classification and clustering machine learning techniques and it's an essential toolkit for anyone trying to build a machine learning model in Python. In this post, however, I want to talk about a different machine learning library: XGBoost. XGBoost works with C++, Java, Python, R, and Julia. It can run on a single machine, but also supports distributed processing frameworks such as Apache Hadoop, Spark and Flink. It's gained popularity recently because it's used frequently as the algorithm of choice for many winning teams for machine learning competitions (e.g. Kaggle). In my last post, I talked about ensemble classifiers, and one type of ensemble classifier is gradient boosting. XGBoost uses gradient boosting to build predictive models. Specifically, it ..." />
+<meta name="keywords" content="Data Science">
+<meta property="og:site_name" content="Avinash's Blog"/>
+<meta property="og:title" content="XGBoost"/>
+<meta property="og:description" content="Everyone who uses Python for data science and machine learning probably uses scikit-learn for model building. Scikit-learn is an open-source Python library which features many of the common regression, classification and clustering machine learning techniques and it's an essential toolkit for anyone trying to build a machine learning model in Python. In this post, however, I want to talk about a different machine learning library: XGBoost. XGBoost works with C++, Java, Python, R, and Julia. It can run on a single machine, but also supports distributed processing frameworks such as Apache Hadoop, Spark and Flink. It's gained popularity recently because it's used frequently as the algorithm of choice for many winning teams for machine learning competitions (e.g. Kaggle). In my last post, I talked about ensemble classifiers, and one type of ensemble classifier is gradient boosting. XGBoost uses gradient boosting to build predictive models. Specifically, it ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://atamby1.github.io/xgboost.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-02-03 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://atamby1.github.io/author/avinash-tamby.html">
+<meta property="article:section" content="Data Science"/>
+<meta property="article:tag" content="Data Science"/>
+<meta property="og:image" content="images/Avinash.jpg">
+
+  <title>Avinash's Blog &ndash; XGBoost</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://atamby1.github.io">
+        <img src="images/Avinash.jpg" alt="Avinash TAMBY" title="Avinash TAMBY">
+      </a>
+      <h1><a href="https://atamby1.github.io">Avinash TAMBY</a></h1>
+
+<p>Data Scientist</p>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/atamby1" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/avinashtamby" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-envelope" href="mailto:atamby1@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://atamby1.github.io">    Home
+</a>
+
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://atamby1.github.io/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="xgboost">XGBoost</h1>
+    <p>
+          Posted on 03 February 2017 in <a href="https://atamby1.github.io/category/data-science.html">Data Science</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Everyone who uses Python for data science and machine learning probably uses scikit-learn for model building. Scikit-learn is an open-source Python library which features many of the common regression, classification and clustering machine learning techniques and it's an essential toolkit for anyone trying to build a machine learning model in Python.</p>
+<p>In this post, however, I want to talk about a <em>different</em> machine learning library: XGBoost. XGBoost works with C++, Java, Python, R, and Julia. It can run on a single machine, but also supports distributed processing frameworks such as Apache Hadoop, Spark and Flink. It's gained popularity recently because it's used frequently as the algorithm of choice for many winning teams for machine learning competitions (e.g. Kaggle).</p>
+<p>In my last post, I talked about ensemble classifiers, and one type of ensemble classifier is gradient boosting. XGBoost uses gradient boosting to build predictive models. Specifically, it boosts random forests.</p>
+<p>Recall that with boosting (I'll talk specifically about boosted random forests) , we have our training data and we build a random forest. The model then reweights observations based on whether or not the observations were classified correctly or incorrectly (correctly classified observations are weighted less heavily and incorrectly classified observations are weighted more heavily). With this technique, the model can put more effort into trying to classify previously misclassified observations correctly.</p>
+<p>What's cool about XGBoost is its flexibility and its scalability. While you can tune a lot of parameters with scikit-learn, you can tune even more with XGBoost. XGBoost has more loss functions to choose from which the model will try to minimize with each iteration. It can also handle missing values in the data, something scikit-learn cannot do. Finally, and perhaps most importantly, XGBoost has some <em>great</em> computational benefits. It automatically parallels on multi-threaded CPUs which is pretty cool, especially considering the fact that boosted trees are an iterative process, meaning sequential models can't be built simultaneously.</p>
+<p>However, while many data scientists and Kaggle competitors use XGBoost to build their models, we must not forget that no one model works best for every problem. The assumptions of a great model for one problem may not hold for for another, so it's usually best practice to try several models to see which one works best for a particular problem. This theorem that no one models works best for every problem is called the No Free Lunch theorem and it's important to keep in mind that although XGBoost is really efficient, gradient boosting may not always be the best algorithm to use for any problem.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://atamby1.github.io/tag/data-science.html">Data Science</a>
+    </p>
+  </div>
+
+
+
+
+</article>
+
+    <footer>
+<p>
+  &copy; Avinash TAMBY 2017 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+<!-- StatusCake -->
+<a href="https://www.statuscake.com" title="Avinash's Blog Uptime">
+  <img src="https://www.statuscake.com/App/button/index.php?Track=test-test&amp;Days=7&amp;Design=" alt="Avinash's Blog Uptime"/>
+</a>
+
+<script type="text/javascript">var SC_RumID = 1234;</script>
+<script type="text/javascript" async src="https://www.statuscake.com/App/RUM/embed.js"></script>
+<!-- End StatusCake --></p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Avinash's Blog ",
+  "url" : "https://atamby1.github.io",
+  "image": "images/Avinash.jpg",
+  "description": "Avinash TAMBY's Thoughts and Writings"
+}
+</script>
+</body>
+</html>
