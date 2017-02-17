@@ -738,7 +738,7 @@ dtype: int64
 </pre></div>
 
 
-<p><img alt="png" src="output_25_0.png" /></p>
+<p><img alt="png" src="images/iowa/StoreSales.png" /></p>
 <div class="highlight"><pre><span></span><span class="n">storesales1</span>
 </pre></div>
 
@@ -956,7 +956,7 @@ dtype: int64
 </pre></div>
 
 
-<p><img alt="png" src="output_32_0.png" /></p>
+<p><img alt="png" src="images/iowa/CountySales.png" /></p>
 <p>As we had seen before Polk County (home to Des Moines) and Linn County (home to Cedar Rapids) have the highest sales. Let's now compare this visualization with county population:</p>
 <div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sales250k</span><span class="o">.</span><span class="n">Population</span><span class="p">,</span> 
@@ -971,7 +971,7 @@ dtype: int64
 </pre></div>
 
 
-<p><img alt="png" src="output_34_0.png" /></p>
+<p><img alt="png" src="images/iowa/CountyPop.png" /></p>
 <p>I sorted the plot so that the county populations are in line with the sales figures, which is why they're not exactly in order of highest to lowest population, they're in order of highest to lowest sales. But this is pretty much exactly in line with sales data with a few changes, e.g. there are more sales in Pottawattamie than in Woodbury even though Woodbury has a higher population.</p>
 <h3>Get City Data</h3>
 <p>Next, I thought I'd get population data from cities in Iowa. I took the data from this website: http://www.iowa-demographics.com/cities_by_population.</p>
@@ -1026,7 +1026,7 @@ dtype: int64
 </pre></div>
 
 
-<p><img alt="png" src="output_41_0.png" /></p>
+<p><img alt="png" src="images/iowa/CitySales.png" /></p>
 <div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">CitySales250k</span><span class="o">.</span><span class="n">Population</span><span class="p">,</span> 
             <span class="n">y</span><span class="o">=</span><span class="n">CitySales250k</span><span class="o">.</span><span class="n">City</span><span class="p">)</span>
@@ -1039,7 +1039,7 @@ dtype: int64
 </pre></div>
 
 
-<p><img alt="png" src="output_42_0.png" /></p>
+<p><img alt="png" src="images/iowa/CityPop.png" /></p>
 <p>Again, we see a similar pattern. High sales in high population cities. Some weird outliers like Windsor Heights, but overall, is pretty much what I expected to see. I looked on Google Maps and Windsor Heights is literally right outsides of Des Moines, so I was wondering if it's cheaper to buy liquor in Windsor Heights (which may explain its high sales to population ratio) than it is to buy liquor in Des Moines.</p>
 <div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Price per ml&#39;</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">==</span> <span class="s1">&#39;WINDSOR HEIGHTS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;State Bottle Retail&#39;</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">==</span> <span class="s1">&#39;WINDSOR HEIGHTS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
