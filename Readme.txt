@@ -1,6 +1,6 @@
 Thanks for downloading this template!
 
-Template Name: DevFolio
-Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+Template Name: ZenBlog
+Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
 Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+License: https:///bootstrapmade.com/license/
