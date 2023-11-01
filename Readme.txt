@@ -1,4 +1,4 @@
-Thanks for downloading this template!
+I downloaded this template from:
 
 Template Name: ZenBlog
 Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
