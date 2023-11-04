@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ZenBlog Bootstrap Template - Category</title>
+  <title>Posts</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -40,51 +40,43 @@
 
 <body>
 
- <!-- ======= Header ======= -->
- <header id="header" class="header d-flex align-items-center fixed-top">
-  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1>Avinash's Blog</h1>
-    </a>
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Avinash's Blog</h1>
+      </a>
 
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-          <ul>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="#">Business</a></li>
-          </ul>
-        </li>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="category.html">Posts</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav><!-- .navbar -->
 
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav><!-- .navbar -->
+      <div class="position-relative">
+        <a href="https://www.linkedin.com/in/avinashtamby/" class="mx-2"><span class="bi-linkedin"></span></a>
+        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
 
-    <div class="position-relative">
-      <a href="https://www.linkedin.com/in/avinashtamby/" class="mx-2"><span class="bi-linkedin"></span></a>
-
-      <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-
-      <!-- ======= Search Form ======= -->
-      <div class="search-form-wrap js-search-form-wrap">
-        <form action="search-result.html" class="search-form">
-          <span class="icon bi-search"></span>
-          <input type="text" placeholder="Search" class="form-control">
-          <button class="btn js-search-close"><span class="bi-x"></span></button>
-        </form>
-      </div><!-- End Search Form -->
+        <!-- ======= Search Form ======= -->
+        <div class="search-form-wrap js-search-form-wrap">
+          <form action="search-result.html" class="search-form">
+            <span class="icon bi-search"></span>
+            <input type="text" placeholder="Search" class="form-control">
+            <button class="btn js-search-close"><span class="bi-x"></span></button>
+          </form>
+        </div><!-- End Search Form -->
+      </div>
 
     </div>
 
-  </div>
-
-</header><!-- End Header -->
+  </header><!-- End Header -->
 
   <main id="main">
     <section>
@@ -92,15 +84,33 @@
         <div class="row">
 
           <div class="col-md-9" data-aos="fade-up">
-            <h3 class="category-title">Category: Business</h3>
+            <h3 class="category-title">All Posts</h3>
+
+            <div class="d-md-flex post-entry-2 half">
+              <a href="8_moneycreation.html" class="me-4 thumbnail">
+                <img src="assets/img/moneycreation.jpeg" alt="" class="img-fluid">
+              </a>
+              <div>
+                <div class="post-meta"><span class="date">Academic</span> <span class="mx-1">&bullet;</span> <span>4 November 2023</span></div>
+                <h3><a href="8_moneycreation.html">Money creation in the modern economy</a></h3>
+                <p>An summary of McLeay et al's paper titled 'Money creation in the modern economy' published in the Bank of England Quarterly Bulletin in 2014 Q1.</p>
+                <div class="d-flex align-items-center author">
+                  <div class="photo"></div>
+                  <div class="name">
+                    <h3 class="m-0 p-0"></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
             <div class="d-md-flex post-entry-2 half">
               <a href="7_interestrates.html" class="me-4 thumbnail">
                 <img src="assets/img/intrt.png" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
-                <h3><a href="6_industryjargon.html">Interest Rates</a></h3>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
+                <h3><a href="7_interestrates.html">Interest Rates</a></h3>
                 <p>An explanation of how interest rates work and a summary of the more important rates to understand</p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"></div>
@@ -116,7 +126,7 @@
                 <img src="assets/img/crm.webp" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                 <h3><a href="6_industryjargon.html">Credit Risk Modeling Terms</a></h3>
                 <p>Dictionary of terms frequently used in the credit risk modeling industry</p>
                 <div class="d-flex align-items-center author">
@@ -133,7 +143,7 @@
                 <img src="assets/img/eu_debtcrisis.webp" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                 <h3><a href="5_eusovereigndebt.html">EU Sovereign Debt Crisis</a></h3>
                 <p>A short explanation of the European sovereign debt crisis of the early 2010s with a focus on Greece.</p>
                 <div class="d-flex align-items-center author">
@@ -150,7 +160,7 @@
                 <img src="assets/img/gold.webp" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                 <h3><a href="4_brettonwoods.html">Bretton Woods and the Gold Standard</a></h3>
                 <p>Some history about the gold standard</p>
                 <div class="d-flex align-items-center author">
@@ -167,7 +177,7 @@
                 <img src="assets/img/us_cpi.png" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                 <h3><a href="3_inflation.html">Inflation</a></h3>
                 <p>What is inflation? Is it good or bad? How do central banks combat it?</p>
                 <div class="d-flex align-items-center author">
@@ -184,7 +194,7 @@
                 <img src="assets/img/eu_debt2gdp.png" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                 <h3><a href="2_eudebtbonds.html">EU Debt and Bonds</a></h3>
                 <p></p>
                 <div class="d-flex align-items-center author">
@@ -200,7 +210,7 @@
                 <img src="assets/img/us_debt2gdp.png" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>31 October 2023</span></div>
+                <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>31 October 2023</span></div>
                 <h3><a href="1_usdebtbonds.html">US Debt and Bonds</a></h3>
                 <p></p>
                 <div class="d-flex align-items-center author">
@@ -214,11 +224,8 @@
             <div class="text-start py-4">
               <div class="custom-pagination">
                 <a href="#" class="prev">Prevous</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
+                <a href="category.html" class="active">1</a>  
+                <!-- ======= <a href="#">2</a> ======= -->
                 <a href="#" class="next">Next</a>
               </div>
             </div>
@@ -230,13 +237,13 @@
 
               <ul class="nav nav-pills custom-tab-nav mb-4" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Popular</button>
+                  <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Latest</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-trending-tab" data-bs-toggle="pill" data-bs-target="#pills-trending" type="button" role="tab" aria-controls="pills-trending" aria-selected="false">Trending</button>
+                  <button class="nav-link" id="pills-trending-tab" data-bs-toggle="pill" data-bs-target="#pills-trending" type="button" role="tab" aria-controls="pills-trending" aria-selected="false"></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false">Latest</button>
+                  <button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill" data-bs-target="#pills-latest" type="button" role="tab" aria-controls="pills-latest" aria-selected="false"></button>
                 </li>
               </ul>
 
@@ -245,39 +252,44 @@
                 <!-- Popular -->
                 <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
 
-                    <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Academic</span> <span class="mx-1">&bullet;</span> <span>4 November 2023</span></div>
+                    <h2 class="mb-2"><a href="8_moneycreation.html">Money creation in the modern economy</a></h2>
+                </div>
+
+                  <div class="post-entry-1 border-bottom">
+                        <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
                         <h2 class="mb-2"><a href="7_interestrates">Interest Rates</a></h2>
                     </div>
 
                     <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                        <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                         <h2 class="mb-2"><a href="6_industryjargon.html">Credit Risk Modeling Terms</a></h2>
                     </div>
     
                   <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                    <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                     <h2 class="mb-2"><a href="5_eusovereigndebt.html">EU Sovereign Debt Crisis</a></h2>
                 </div>
               
 
                     <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                        <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                         <h2 class="mb-2"><a href="4_brettonwoods.html">Bretton Woods and the Gold Standard</a></h2>
                   </div>
                       
                 <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                    <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                     <h2 class="mb-2"><a href="3_inflation.html">Inflation</a></h2>
                   </div>
 
                 <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                    <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                     <h2 class="mb-2"><a href="2_eudebtbonds.html">EU Debt and Bonds</a></h2>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>31 October 2023</span></div>
+                    <div class="post-meta"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>31 October 2023</span></div>
                     <h2 class="mb-2"><a href="1_usdebtbonds.html">US Debt and Bonds</a></h2>
                 </div>
                 </div> <!-- End Popular -->
@@ -285,84 +297,11 @@
                 <!-- Trending -->
                 <div class="tab-pane fade" id="pills-trending" role="tabpanel" aria-labelledby="pills-trending-tab">
                   <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
-
-                    <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
-                        <h2 class="mb-2"><a href="7_interestrates">Interest Rates</a></h2>
-                    </div>
-                    
-                    <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                        <h2 class="mb-2"><a href="6_industryjargon.html">Credit Risk Modeling Terms</a></h2>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                      <h2 class="mb-2"><a href="5_eusovereigndebt.html">EU Sovereign Debt Crisis</a></h2>
-                  </div>
-
-                    <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                    <h2 class="mb-2"><a href="4_brettonwoods.html">Bretton Woods and the Gold Standard</a></h2>
-                    </div>
-
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                    <h2 class="mb-2"><a href="3_inflation.html">Inflation</a></h2>
-                  </div>
-                  
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                    <h2 class="mb-2"><a href="2_eudebtbonds.html">EU Debt and Bonds</a></h2>
-                  </div>
-
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>October 2023</span></div>
-                    <h2 class="mb-2"><a href="1_usdebtbonds.html">US Debt and Bonds</a></h2>
-                  </div>
                 </div> <!-- End Trending -->
 
                 <!-- Latest -->
                 <div class="tab-pane fade" id="pills-latest" role="tabpanel" aria-labelledby="pills-latest-tab">
                 <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
-
-                    <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
-                        <h2 class="mb-2"><a href="7_interestrates">Interest Rates</a></h2>
-                    </div>
-                    
-                    <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                        <h2 class="mb-2"><a href="6_industryjargon.html">Credit Risk Modeling Terms</a></h2>
-                    </div>
-
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                    <h2 class="mb-2"><a href="5_eusovereigndebt.html">EU Sovereign Debt Crisis</a></h2>
-                </div>
-
-                    <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                        <h2 class="mb-2"><a href="4_brettonwoods.html">Bretton Woods and the Gold Standard</a></h2>
-                    </div>
-
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                    <h2 class="mb-2"><a href="3_inflation.html">Inflation</a></h2>
-                  </div>
-                  
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                    <h2 class="mb-2"><a href="2_eudebtbonds.html">EU Debt and Bonds</a></h2>
-                  </div>
-
-                  <div class="post-entry-1 border-bottom">
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>31 October 2023</span></div>
-                    <h2 class="mb-2"><a href="1_usdebtbonds.html">US Debt and Bonds</a></h2>
-                  </div>
-
-
-
                 </div> <!-- End Latest -->
 
               </div>
@@ -389,28 +328,35 @@
               <h3 class="footer-heading">Navigation</h3>
               <ul class="footer-links list-unstyled">
                 <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
+                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Posts</a></li>
                 <li><a href="about.html"><i class="bi bi-chevron-right"></i> About me</a></li>
                 <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
               </ul>
             </div>
             <div class="col-6 col-lg-2">
-              <h3 class="footer-heading">Categories</h3>
-              <ul class="footer-links list-unstyled">
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-              </ul>
-            </div>
-  
-            <div class="col-lg-4">
-              <h3 class="footer-heading">Recent Posts</h3>
-  
+              <h3 class="footer-heading">Recent Academic Posts</h3>
               <ul class="footer-links footer-blog-entry list-unstyled">
 
                 <li>
+                    <a href="8_moneycreation.html" class="d-flex align-items-center">
+                      <img src="assets/img/moneycreation.jpeg" alt="" class="img-fluid me-3">
+                      <div>
+                        <div class="post-meta d-block"><span class="date">Academic</span> <span class="mx-1">&bullet;</span> <span>4 November 2023</span></div>
+                        <span>Money creation in the modern economy</span>
+                      </div>
+                    </a>
+                  </li>
+            </div>
+  
+            <div class="col-lg-4">
+              <h3 class="footer-heading">Recent Blog Posts</h3>
+              <ul class="footer-links footer-blog-entry list-unstyled">
+                  
+                  <li>
                     <a href="7_interestrates" class="d-flex align-items-center">
                       <img src="assets/img/intrt.png" alt="" class="img-fluid me-3">
                       <div>
-                        <div class="post-meta d-block"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
+                        <div class="post-meta d-block"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
                         <span>Interest Rates</span>
                       </div>
                     </a>
@@ -420,21 +366,21 @@
                     <a href="6_industryjargon.html" class="d-flex align-items-center">
                       <img src="assets/img/crm.webp" alt="" class="img-fluid me-3">
                       <div>
-                        <div class="post-meta d-block"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                        <div class="post-meta d-block"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                         <span>Credit Risk Modeling Terms</span>
                       </div>
                     </a>
                   </li>
 
-                <li>
-                  <a href="5_eusovereigndebt.html" class="d-flex align-items-center">
-                    <img src="assets/img/eu_debtcrisis.webp" alt="" class="img-fluid me-3">
-                    <div>
-                      <div class="post-meta d-block"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                      <span>EU Sovereign Debt Crisis</span>
-                    </div>
-                  </a>
-                </li>
+                  <li>
+                    <a href="5_eusovereigndebt.html" class="d-flex align-items-center">
+                      <img src="assets/img/eu_debtcrisis.webp" alt="" class="img-fluid me-3">
+                      <div>
+                        <div class="post-meta d-block"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                        <span>EU Sovereign Debt Crisis</span>
+                      </div>
+                    </a>
+                  </li>
             </ul>
   
             </div>

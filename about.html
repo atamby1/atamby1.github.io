@@ -40,51 +40,43 @@
 
 <body>
 
- <!-- ======= Header ======= -->
- <header id="header" class="header d-flex align-items-center fixed-top">
-  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1>Avinash's Blog</h1>
-    </a>
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Avinash's Blog</h1>
+      </a>
 
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-          <ul>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="#">Business</a></li>
-          </ul>
-        </li>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="category.html">Posts</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav><!-- .navbar -->
 
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav><!-- .navbar -->
+      <div class="position-relative">
+        <a href="https://www.linkedin.com/in/avinashtamby/" class="mx-2"><span class="bi-linkedin"></span></a>
+        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
 
-    <div class="position-relative">
-      <a href="https://www.linkedin.com/in/avinashtamby/" class="mx-2"><span class="bi-linkedin"></span></a>
-
-      <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-
-      <!-- ======= Search Form ======= -->
-      <div class="search-form-wrap js-search-form-wrap">
-        <form action="search-result.html" class="search-form">
-          <span class="icon bi-search"></span>
-          <input type="text" placeholder="Search" class="form-control">
-          <button class="btn js-search-close"><span class="bi-x"></span></button>
-        </form>
-      </div><!-- End Search Form -->
+        <!-- ======= Search Form ======= -->
+        <div class="search-form-wrap js-search-form-wrap">
+          <form action="search-result.html" class="search-form">
+            <span class="icon bi-search"></span>
+            <input type="text" placeholder="Search" class="form-control">
+            <button class="btn js-search-close"><span class="bi-x"></span></button>
+          </form>
+        </div><!-- End Search Form -->
+      </div>
 
     </div>
 
-  </div>
-
-</header><!-- End Header -->
+  </header><!-- End Header -->
 
 
   <main id="main">
@@ -108,9 +100,9 @@
               <p>I am interested in banking, data science, economics, finance, history, and statistics. I like to read business, finance, and economic news from <i>The Economist</i>, <i>The Wall Street Journal</i>, the <i>Financial Times</i>, and <i>Bloomberg Businessweek</i>. I am particularly interested in central banking and how the Federal Reserve and the European Central Bank research their policy decisions, and how they use the tools at their disposal to maintain price stability (and maximize employment). I have a strong interest in building a career the benefits the public good.</p>
               <h2 class="mb-4 display-4">Professional Background</h2>
               <p>After graduating from The Johns Hopkins University with a BS in Applied Math and Statistics, I started working as an analyst at a specialized advisory firm called Summit Consulting, LLC headquartered in Washington, DC. My first project involved running an Automated Valuation Model (AVM) to assess the property values the were packaged into residential mortgage-backed securities (RMBS) before the 2007 subprime mortgage crisis. Our model was used to help our clients claim that the properties in the RMBSs they purchased were artificially inflated and the RMBS seller was dishonest in its pricing. Working on this project led me to develop strong programming skills, a deep understanding of the inner workings of statistical models, how to write convincing legal reports, and how to prepare expert witnesses for deposition. The impact of work I did ultimately helped the US government recover $25 billion of taxpayer money.</p>
-              <p>My primary project during my time with Summit Consulting involved managing risk and assessing capital projections for the United States Federal Housing Administration’s (FHA) Mutual Mortgage Insurance Fund, which guarantees 8 million loans worth $1.3 trillion in unpaid principal balance. After being promoted to Consultant, I led a team of 3 analysts on this project that consisted of building monthly reports to track the evolution of the loan portfolio including the types of loans, the interest rates, the profiles of the new originations entering the portfolio, and the composition of loans exiting the portfolio (whether they were defaults, refinances, or end-of-term payoffs). I also produced quarterly reports to forecast the net present value (NPV) of future cash flows (or how much the money portfolio was expected to bring in in insurance premiums and how much the portfolio would lose from defaults). This involved forecasting probabilities of default (PD) and losses given default (LGD), designing sensitivity scenarios around potential changes in loan composition and stress tests around various economic forecasts (<b><a href="6_industryjargon.html" style="color:blue">see my post defining the technical jargon used in the risk modeling industry</a></b>). It also involved clearly communicating changes in the data, changes in the models, and changes in the economic forecasts to my clients at FHA and getting approval from the the Model Risk Governance (MRG) Board, comprised of several Deputy Assistant Secretaries of the Department of Housing and Urban Development (HUD) and the presidentially appointed FHA Commissioner. Some of my advisory work with FHA has been published publicly in FHA’s Annual Report to Congress on the Status of the MMI Fund. Working on this project led me to develop: an even stronger programming skills (particularly in SAS), an understanding of the importance of comprehensive  documentation to help other people learn how the models work, strong communication skills to help the Independent Verification and Validation (IV&V) teams, the auditors, the independent actuaries, and the governing board verify that our models held up to industry standards and did not have any findings or deficiencies. I feel particularly proud of the impact of this project because I felt like I was working on something that was genuinely helping Americans purchase homes. I was also particularly proud of the work I did during the employment crisis caused by COVID-19 because I worked closely with my clients at FHA and with the Office of Management and Budget (OMB) to design loss mitigation strategies which has allowed hundreds of thusands of borrowers keep their homes and avoid foreclosure during a particularly vulnerable period.</p>
-              <p>During my time as a Master’s student at Aix-Marseille School of Economics, I also worked as a student researcher analyzing financial fragmentation and inequalities in the euro area. I was primarily responsible for “making the data talk”, which meant analyzing, summarizing, and reporting the data the lead researchers were using in our analyses. I primarily worked with the European Central Bank’s Household Finance and Consumption Survey Waves 1, 2, and 3 to analyze and compare household-level income and wealth across countries in the euro area. This project helped me develop my R programming skills even further, and helped me develop my communication skills (particularly in French) when discussing my analyses with the lead researchers. The impact is hopefully to help the ECB examine the role it can play in reducing inequalities in Europe through financial integration.</p>
-              <p>My most recent professional experience was as a Senior Consultant at Ekimetrics, a French consulting firm which specializes in marketing mix modeling. My time at Ekimetrics allowed me to gain a better understanding of the proprietary tools they use to evaluate the impact of media advertising campaigns and helped me learn about the procedure for writing proposals to bid new business.</p>
+              <p>My primary project during my time with Summit Consulting involved managing risk and assessing capital projections for the United States Federal Housing Administration’s (FHA) Mutual Mortgage Insurance Fund, which guarantees 8 million loans worth $1.3 trillion in unpaid principal balance. After being promoted to Consultant, I led a team of 3 analysts on this project that consisted of building monthly reports to track the evolution of the loan portfolio including the types of loans, the interest rates, the profiles of the new originations entering the portfolio, and the composition of loans exiting the portfolio (whether they were defaults, refinances, or end-of-term payoffs). I also produced quarterly reports to forecast the net present value (NPV) of future cash flows (or how much the money portfolio was expected to bring in in insurance premiums and how much the portfolio would lose from defaults). This involved forecasting probabilities of default (PD) and losses given default (LGD), designing sensitivity scenarios around potential changes in loan composition and stress tests around various economic forecasts (<b><a href="6_industryjargon.html" style="color:blue">see my post defining the technical jargon used in the risk modeling industry</a></b>). It also involved clearly communicating changes in the data, changes in the models, and changes in the economic forecasts to my clients at FHA and getting approval from the the Model Risk Governance (MRG) Board, comprised of several Deputy Assistant Secretaries of the Department of Housing and Urban Development (HUD) and the presidentially appointed FHA Commissioner. Some of my advisory work with FHA has been published publicly in FHA’s Annual Report to Congress on the Status of the MMI Fund. Working on this project led me to develop even stronger programming skills (particularly in SAS), an understanding of the importance of comprehensive and detailed documentation to help other people learn how the models work, strong communication skills to help the Independent Verification and Validation (IV&V) teams, the auditors, the independent actuaries, and the governing board verify that our models held up to industry standards and did not have any findings or deficiencies. I feel particularly proud of the impact of this project because I felt like I was working on something that was genuinely helping Americans purchase homes. I was also particularly proud of the work I did during the employment crisis caused by COVID-19 because I worked closely with my clients at FHA and with the Office of Management and Budget (OMB) to design loss mitigation strategies which allowed hundreds of thousands of borrowers to keep their homes and avoid foreclosure during a particularly vulnerable period.</p>
+              <p>During my time as a Master’s student at Aix-Marseille School of Economics in Marseille, I also worked as a student researcher analyzing financial fragmentation and inequalities in the euro area. I was primarily responsible for “making the data talk”, which meant analyzing, summarizing, and reporting the data the lead researchers were using in our analyses. I primarily worked with the European Central Bank’s Household Finance and Consumption Survey Waves 1, 2, and 3 to analyze and compare household-level income and wealth across countries in the euro area. This project helped me develop my R programming skills even further, and helped me develop my communication skills (particularly in French) when discussing my analyses with the lead researchers. The impact is hopefully to help the ECB examine the role it can play in reducing inequalities in Europe through financial integration.</p>
+              <p>My most recent professional experience was as a Senior Consultant at Ekimetrics, a French consulting firm headquartered in Paris which specializes in marketing mix modeling. My time at Ekimetrics allowed me to gain a better understanding of the proprietary tools they use to evaluate the impact of media advertising campaigns and helped me learn about the procedure for writing proposals to bid new business.</p>
             </div>
           </div>
 
@@ -123,7 +115,7 @@
               <h2 class="mb-4 display-4">Personal Interests</h2>
               <p>I love to read. I like to read everything from fictional novels, science fiction and fantasy to memoirs, biographies, and autobiographies, to business, history and self-development. If it’s well written, I probably want to read it. I also like to read the long-form investigative journalism articles from <i>The New Yorker</i>, <i>The Atlantic</i>, and <i>The New York Times Magazine</i>.</p>
               <p>I'll also use this section to pitch the public library. For those of you who don't have a library card from your local public library, I would highly recommend you get one. It's free and you can check out ebooks online using an application called <b>Libby</b> which allows you to read ebooks and magazines on your computer, your phone, your tablet, or your ereader. You can also check out audiobooks if that's more your thing. Some libraries also use a different application called <b>Hoopla</b>. Hoopla also has some TV shows, movies, and music along with ebooks and audiobooks. Another app called <b>Kanopy</b> also has TV shows and movies. Some libraries also provide free access to an application called <b>PressReader</b> which allows you to read newspapers and magazines like <i>The Wall Street Journal</i>, <i>The Washington Post</i>, <i>The Economist</i>, and even foreign papers like <i>Le Figaro</i>.</p>
-              <p>Malheureusement, Libby n'existe pas (encore) pour les bibliothèques françaises, mais si vous avez une carte d'abonné pour les bibliothèques de prêt à Paris, vous pouvez télécharger des livres éléctroniques et des livres en audio sur le site et les lire avec l'application <b>Baobab</b>.
+              <p>Malheureusement, Libby n'existe pas (encore) pour les bibliothèques en France, mais si vous avez une carte d'abonné pour les bibliothèques de prêt à Paris, vous pouvez télécharger des livres éléctroniques et des livres en audio sur le site et les lire avec l'application <b>Baobab</b>.
             </div>
           </div>
 
@@ -172,28 +164,35 @@
               <h3 class="footer-heading">Navigation</h3>
               <ul class="footer-links list-unstyled">
                 <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
+                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Posts</a></li>
                 <li><a href="about.html"><i class="bi bi-chevron-right"></i> About me</a></li>
                 <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
               </ul>
             </div>
             <div class="col-6 col-lg-2">
-              <h3 class="footer-heading">Categories</h3>
-              <ul class="footer-links list-unstyled">
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-              </ul>
-            </div>
-  
-            <div class="col-lg-4">
-              <h3 class="footer-heading">Recent Posts</h3>
-  
+              <h3 class="footer-heading">Recent Academic Posts</h3>
               <ul class="footer-links footer-blog-entry list-unstyled">
 
                 <li>
+                    <a href="8_moneycreation.html" class="d-flex align-items-center">
+                      <img src="assets/img/moneycreation.jpeg" alt="" class="img-fluid me-3">
+                      <div>
+                        <div class="post-meta d-block"><span class="date">Academic</span> <span class="mx-1">&bullet;</span> <span>4 November 2023</span></div>
+                        <span>Money creation in the modern economy</span>
+                      </div>
+                    </a>
+                  </li>
+            </div>
+  
+            <div class="col-lg-4">
+              <h3 class="footer-heading">Recent Blog Posts</h3>
+              <ul class="footer-links footer-blog-entry list-unstyled">
+                  
+                  <li>
                     <a href="7_interestrates" class="d-flex align-items-center">
                       <img src="assets/img/intrt.png" alt="" class="img-fluid me-3">
                       <div>
-                        <div class="post-meta d-block"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
+                        <div class="post-meta d-block"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>3 November 2023</span></div>
                         <span>Interest Rates</span>
                       </div>
                     </a>
@@ -203,21 +202,21 @@
                     <a href="6_industryjargon.html" class="d-flex align-items-center">
                       <img src="assets/img/crm.webp" alt="" class="img-fluid me-3">
                       <div>
-                        <div class="post-meta d-block"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                        <div class="post-meta d-block"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
                         <span>Credit Risk Modeling Terms</span>
                       </div>
                     </a>
                   </li>
 
-                <li>
-                  <a href="5_eusovereigndebt.html" class="d-flex align-items-center">
-                    <img src="assets/img/eu_debtcrisis.webp" alt="" class="img-fluid me-3">
-                    <div>
-                      <div class="post-meta d-block"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
-                      <span>EU Sovereign Debt Crisis</span>
-                    </div>
-                  </a>
-                </li>
+                  <li>
+                    <a href="5_eusovereigndebt.html" class="d-flex align-items-center">
+                      <img src="assets/img/eu_debtcrisis.webp" alt="" class="img-fluid me-3">
+                      <div>
+                        <div class="post-meta d-block"><span class="date">Blog</span> <span class="mx-1">&bullet;</span> <span>1 November 2023</span></div>
+                        <span>EU Sovereign Debt Crisis</span>
+                      </div>
+                    </a>
+                  </li>
             </ul>
   
             </div>
